@@ -6,12 +6,15 @@ public class Prota : MonoBehaviour {
 	public float accel = 0.5f;
 	private float velocity = 0.0f;
 
+	private Logic _logic;
+
 	void Start () {
+		_logic = Logic.instance;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 mov = InputController.GetMovement(1);
+		Vector2 mov = InputController.GetMovement(_logic.GetCurrentPlayer());
 		if (mov.magnitude != 0) {
 			velocity += accel;
 		} else {
