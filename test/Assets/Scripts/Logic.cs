@@ -5,7 +5,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 	public GameObject start;
 	public float roundTime = 30.0f;
 	public float time;
-	public GameObject prota;
+	public Prota prota;
 	public enum GameState {PLAYING, WAITING};
 	public GameState gameState = GameState.WAITING;
 

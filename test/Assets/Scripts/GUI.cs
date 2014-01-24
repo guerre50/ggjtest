@@ -4,6 +4,8 @@ using System.Collections;
 public class GUI : MonoBehaviour {
 	public TextMesh timeText;
 	public TextMesh middleText;
+	public TextMesh lifeText;
+	public TextMesh trapsText;
 	private Logic _logic;
 
 	// Use this for initialization
@@ -31,6 +33,8 @@ public class GUI : MonoBehaviour {
 	
 	private void PlayingState() {
 		middleText.gameObject.SetActive(false);
-		timeText.text = ((int)_logic.time) + "";
+		timeText.text = ((int)_logic.time)+"";
+		lifeText.text = _logic.prota.life +"";
+		trapsText.text = _logic.prota.traps +"";
 	}
 }
