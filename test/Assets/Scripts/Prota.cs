@@ -8,16 +8,21 @@ public class Prota : MonoBehaviour {
 	public int life = 4;
 	public int traps = 5;
 
+	private Logic _logic;
+
 	void Start () {
+		_logic = Logic.instance;
 	}
 
 	void Update () {
-		UpdateMovement();
-		Actions();
+		if (_logic.gameState == Logic.GameState.PLAYING) {
+			UpdateMovement();
+			Actions();
+		}
 	}
 
 	public void UpdateMovement() {
-		Vector2 mov = InputController.GetMovement(1);
+		Vector2 mov = InputController.GetMovement(_logic.GetCurrentPlayer());
 		if (mov.magnitude != 0) {
 			velocity += accel;
 		} else {
@@ -30,8 +35,12 @@ public class Prota : MonoBehaviour {
 	}
 
 	public void Actions() {
-		if (InputController.GetKeyDown(InputController.Key.A, 1)) {
-			Debug.Log ("fasdfas");
+		if (InputController.GetKeyDown(InputController.Key.A, _logic.GetCurrentPlayer())) {
+
+		}
+
+		if (InputController.GetKeyDown(InputController.Key.Y, _logic.GetCurrentPlayer())) {
+			_logic.CheckAndBuyTime();
 		}
 	}
 

@@ -25,10 +25,10 @@ public static class InputController {
 	
 	// TO-DO Customize with your own maping 
 	private static KeyCode[][] ToKeyboardKeyCode = new KeyCode[24][] {
-		/* A */		new KeyCode[]{ KeyCode.B, KeyCode.Q, KeyCode.A, KeyCode.W, KeyCode.W}, 
+		/* A */		new KeyCode[]{ KeyCode.B, KeyCode.Space, KeyCode.Space, KeyCode.Space, KeyCode.Space}, 
 		/* B */		new KeyCode[]{}, 
 		/* X */		new KeyCode[]{}, 
-		/* Y */		new KeyCode[]{}, 
+		/* Y */		new KeyCode[]{KeyCode.B, KeyCode.B, KeyCode.B, KeyCode.B, KeyCode.B}, 
 		/* LB */	new KeyCode[]{}, 
 		/* RB */	new KeyCode[]{},
 		/* Back */	new KeyCode[]{}, 

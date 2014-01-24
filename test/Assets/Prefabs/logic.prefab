@@ -43,6 +43,11 @@ MonoBehaviour:
   time: 15
   prota: {fileID: 0}
   gameState: 1
+  startingMoney: 5
+  moneyPerSecond: .699999988
+  trapPrice: 5
+  timePrice: 5
+  timeBuyableAmount: 5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

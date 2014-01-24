@@ -6,6 +6,7 @@ public class GUI : MonoBehaviour {
 	public TextMesh middleText;
 	public TextMesh lifeText;
 	public TextMesh trapsText;
+	public TextMesh moneyText;
 	private Logic _logic;
 
 	// Use this for initialization
@@ -29,12 +30,15 @@ public class GUI : MonoBehaviour {
 
 	private void WaitingState() {
 		middleText.gameObject.SetActive(true);
+		moneyText.gameObject.SetActive (false);
 	}
 	
 	private void PlayingState() {
 		middleText.gameObject.SetActive(false);
-		timeText.text = ((int)_logic.time)+"";
 		lifeText.text = _logic.prota.life +"";
 		trapsText.text = _logic.prota.traps +"";
+		moneyText.gameObject.SetActive (true);
+		timeText.text = ((int)_logic.time) + "";
+		moneyText.text = _logic.GetCurrentPlayerMoney() + " $";
 	}
 }
