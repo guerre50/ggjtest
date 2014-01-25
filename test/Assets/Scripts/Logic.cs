@@ -17,6 +17,11 @@ public  class Logic : GameObjectSingleton<Logic> {
     private Vector3 sidescrollGravity = new Vector3(0, 0, -20.0f);
     private Vector3 topviewGravity = new Vector3(0, -20.0f, 0);
 
+    public Color KEYBOXBOTH = new Color(255,0,255);
+    public Color KEYBOXTOP = new Color(255,255,0);
+    public Color KEYBOXSIDE = new Color(0, 255, 255);
+    public Color KEYBOXNEUTRAL = new Color(255,255,255);
+
 	// Privates
 	private int currentPlayer = 0;
 	private MyGUI camGUI;

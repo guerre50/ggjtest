@@ -9,17 +9,24 @@ public class Button : MonoBehaviour {
 
 	private bool buttonActive = false;
 	private bool wasActive = false;
-	public GameObject graphics;
 
 	private Logic _logic;
 
 	void Start() {
 		_logic = Logic.instance;
-        graphics.renderer.material.color = keyBox.GetComponentInChildren<Renderer>().material.color;
+        //graphics.renderer.material.color = keyBox.GetComponentInChildren<Renderer>().material.color;
 	}
 
 	void FixedUpdate () {
-		graphics.renderer.enabled = IsVisible();
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer rend in renderers)
+        {
+            rend.enabled = IsVisible();
+        }
+
+        Renderer border = GetComponentInChildren<Renderer>();
+        border.material.color = keyBox.GetComponent<Pushable>().currentColor;
 
         if (buttonActive)
         {
@@ -42,14 +49,13 @@ public class Button : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider col) {
-        // check if button is pressable in this mode
-		//if(InOwnMode()) {
-            if (col.gameObject.tag == "Rock") {
-			    buttonActive = true;
-		    }
-		//}
+        //Debug.Log("Collided");
+        //Debug.Log(col);
+        //Debug.Log(keyBox);
         if (col.gameObject == keyBox.gameObject)
         {
+            //Debug.Log("Entered");
+            buttonActive = true;
             // draw key to center of button
             // turn color of
         }
@@ -66,5 +72,7 @@ public class Button : MonoBehaviour {
         {
             Gizmos.DrawLine(transform.position, door.transform.position);
         }
+        Gizmos.DrawLine(transform.position, keyBox.transform.position);
+
 	}
 }

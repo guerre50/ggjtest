@@ -7,6 +7,7 @@ public class Pushable : MonoBehaviour {
     private Logic _logic;
     private Bounce bounceScript;
 	public GameObject graphics;
+    public Color currentColor = new Color(255,255,255);
 
 	// Use this for initialization
 	void Start () {
@@ -16,26 +17,49 @@ public class Pushable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (movableIn == MoveMode.BOTH) {
-			bounceScript.enabled = true;
-			rigidbody.isKinematic = false;
-			graphics.renderer.material.color = new Color(0,0,255);
-		}
-        else if (IsMovable())
+        if (IsMovable())
         {
             bounceScript.enabled = true;
-            rigidbody.isKinematic = false;
-			graphics.renderer.material.color = new Color(255,0,255);
-
+			rigidbody.isKinematic = false;
         }
         else
         {
             bounceScript.enabled = false;
             rigidbody.isKinematic = true;
-			graphics.renderer.material.color = new Color(255,255,255);
         }
-	}
 
+        if (movableIn == MoveMode.SIDESCROLL)
+        {
+            if (_logic.gameMode == Logic.GameMode.SIDESCROLL)
+            {
+                graphics.renderer.material.color = _logic.KEYBOXSIDE;
+            }
+            else
+            {
+                graphics.renderer.material.color = _logic.KEYBOXNEUTRAL;
+            }
+
+            currentColor = _logic.KEYBOXSIDE;
+        }
+        else if (movableIn == MoveMode.TOPVIEW)
+        {
+            if (_logic.gameMode == Logic.GameMode.TOPVIEW)
+            {
+                graphics.renderer.material.color = _logic.KEYBOXTOP;
+            }
+            else
+            {
+                graphics.renderer.material.color = _logic.KEYBOXNEUTRAL;
+            }
+            currentColor = _logic.KEYBOXTOP;
+        }
+        else
+        {
+            graphics.renderer.material.color = _logic.KEYBOXBOTH;
+            currentColor = _logic.KEYBOXBOTH;
+        }
+        
+	}
 
     bool IsMovable()
     {
