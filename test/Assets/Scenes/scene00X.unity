@@ -255,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movableIn: 0
   graphics: {fileID: 959553735}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
+  currentColor: {r: 255, g: 255, b: 255, a: 1}
 --- !u!54 &160600562
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -790,6 +790,10 @@ Prefab:
       propertyPath: keyBox
       value: 
       objectReference: {fileID: 1783745741}
+    - target: {fileID: 11400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
+      propertyPath: buttonVisibleIn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
   m_RootGameObject: {fileID: 2047408282}
@@ -4084,7 +4088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49834bad23ad60f438ecd9aa3ef2c0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonVisibleIn: 0
+  buttonVisibleIn: 1
   doors:
   - {fileID: 814550211}
   keyBox: {fileID: 160600558}
@@ -4162,7 +4166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movableIn: 1
   graphics: {fileID: 1054112372}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
+  currentColor: {r: 255, g: 255, b: 255, a: 1}
 --- !u!54 &1783745745
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5042,7 +5046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49834bad23ad60f438ecd9aa3ef2c0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonVisibleIn: 1
+  buttonVisibleIn: 0
   doors:
   - {fileID: 524949655}
   keyBox: {fileID: 1783745741}
@@ -5156,7 +5160,7 @@ Prefab:
       objectReference: {fileID: 814550211}
     - target: {fileID: 11400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: buttonVisibleIn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6500000, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_Size.x
