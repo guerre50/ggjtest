@@ -31,14 +31,13 @@ public class Button : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider col) {
-		//if ((floored && ) || ()) { //TODO
+		if (InOwnMode()) {
 			buttonActive = true;
-		//}
+		}
 	}
 
 	public bool InOwnMode() {
-		//return ((floored && ) || ()) { //TODO
-		return true;
+		return (floored && (_logic.gameMode == Logic.GameMode.SIDESCROLL)) || (!floored && (_logic.gameMode == Logic.GameMode.TOPVIEW));
 	}
 
 	void OnDrawGizmos() {
