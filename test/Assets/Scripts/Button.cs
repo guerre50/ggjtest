@@ -49,12 +49,12 @@ public class Button : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider col) {
-        Debug.Log("Collided");
-        Debug.Log(col);
-        Debug.Log(keyBox);
+        //Debug.Log("Collided");
+        //Debug.Log(col);
+        //Debug.Log(keyBox);
         if (col.gameObject == keyBox.gameObject)
         {
-            Debug.Log("Entered");
+            //Debug.Log("Entered");
             buttonActive = true;
             // draw key to center of button
             // turn color of
