@@ -67,7 +67,8 @@ public class Prota : MonoBehaviour {
 			} else{
 				angularVelocity.y =0;
 			}
-			
+
+
 			jumping = false;
 		} else {
 			//velocity.x = 0;
@@ -100,6 +101,30 @@ public class Prota : MonoBehaviour {
 		} 
 		rigidbody.angularVelocity = angularVelocity;
 		rigidbody.velocity = velocity;
+
+		/*
+		if (!_tween) {
+			float total = velocity.magnitude/maxVelocity;
+			Vector3 scale = new Vector3(
+				Mathf.Lerp (0.8f, 1.1f, Mathf.Abs (velocity.x)/total),
+				Mathf.Lerp (0.8f, 1.1f, Mathf.Abs (velocity.y)/total),
+				Mathf.Lerp (0.8f, 1.1f, Mathf.Abs (velocity.z)/total));
+
+			Debug.Log (scale);
+
+			if (!float.IsNaN(scale.magnitude)) {
+				iTween.ScaleUpdate(body, iTween.Hash(
+						"scale", scale,
+					"time", 0.5f
+				));
+			}
+			OnScale();
+		}*/
+
+	}
+
+	public void LateUpdate(){ 
+		OnScale();
 	}
 
 	public void TopView() {
@@ -168,8 +193,6 @@ public class Prota : MonoBehaviour {
 	}
 
 	public void OnScale() {
-		Vector3 pos = body.transform.localPosition;
-		pos.z = body.transform.localScale.z/2;
 	}
 
 	public void OnScaleComplete() {

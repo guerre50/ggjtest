@@ -21,9 +21,12 @@ public  class Logic : GameObjectSingleton<Logic> {
 	private int currentPlayer = 0;
 	private MyGUI camGUI;
 	public GameObject menuBackground;
+	public GameObject menuBackgroundHole;
 
 	private float menuAnimationTime = 1.0f;
 	private float animatedTime = 0.0f;
+
+	private bool itween;
 
 	// Use this for initialization
 	void Start () {
@@ -31,14 +34,14 @@ public  class Logic : GameObjectSingleton<Logic> {
 		initialPosition = prota.gameObject.transform.position;
 		camGUI = GameObject.FindGameObjectWithTag ("MainCamera").GetComponentInChildren<MyGUI> ();
 		menuBackground = GameObject.FindGameObjectWithTag ("MenuBackground");
+		menuBackgroundHole = GameObject.FindGameObjectWithTag ("MenuBackgroundHole");
 
 		//Stop ();
 		time = 0.0f;
 		
 		prota.enabled = false;
 		menuBackground.renderer.material.color = prota.gameObject.renderer.material.color;
-		menuBackground.transform.localScale = new Vector3 (100.0f, 2.0f, 100.0f);
-		menuBackground.transform.position = prota.transform.position;
+		menuBackground.transform.position = prota.transform.position + Camera.main.transform.forward*-5;
 		menuBackground.renderer.enabled = true;
 
 		gameState = GameState.WAITING;
@@ -72,27 +75,39 @@ public  class Logic : GameObjectSingleton<Logic> {
 
 	private void WaitingState() {
 		animatedTime -= Time.deltaTime;
-
-		if (animatedTime > 0.0f) {
-			if (menuBackground.transform.localScale.magnitude < 150.0f)
-				menuBackground.transform.localScale = new Vector3(menuBackground.transform.localScale.x*(2.0f - menuAnimationTime/10.0f), 2.0f, menuBackground.transform.localScale.z*(2.0f - menuAnimationTime/10.0f));
-			menuBackground.transform.position = prota.transform.position;
+		if (animatedTime > 0.0f && !itween) {
+			itween = true;
+			iTween.ScaleTo (menuBackground, iTween.Hash(
+				"scale", new Vector3(-0.15370647f, -0.15370647f, -0.15370647f),
+				"onComplete", "OnScaleComplete",
+				"onCompleteTarget", gameObject,
+				"time", menuAnimationTime/3));
+			menuBackground.transform.position = prota.transform.position + Camera.main.transform.forward*-5;
 		}
-		else {
+		if (animatedTime <= 0.0f) {
 			camGUI.SetState(gameState);
 			if (InputController.GetKeyDown (InputController.Key.A, GetCurrentPlayer())) {
 				Restart ();
 			}
 		}
-	}
+	} 
 
 	private void PlayingState() {
 		time -= Time.deltaTime;
-
+		if (time > 0.0f && !itween) {
+			itween = true;
+			iTween.ScaleTo (menuBackground, iTween.Hash(
+				"scale", new Vector3(-36, -36, -36),
+				"onComplete", "OnScaleComplete",
+				"easetype", iTween.EaseType.easeOutExpo,
+				"onCompleteTarget", gameObject,
+				"time", menuAnimationTime));
+			iTween.ShakePosition(Camera.main.gameObject, new Vector3(0.1f, 0.0f, 0.1f), 1.0f);
+		}
 		if (time > 0.0f) {
-			menuBackground.transform.localScale = new Vector3 (menuBackground.transform.localScale.x * ( menuAnimationTime / 10.0f + 0.4f), 2.0f, menuBackground.transform.localScale.z * ( menuAnimationTime / 10.0f + 0.4f));
 			menuBackground.transform.position = prota.transform.position;
 		}
+
 
 		if (InputController.GetKeyDown(InputController.Key.Start, GetCurrentPlayer())) //Change players
 		{
@@ -103,6 +118,9 @@ public  class Logic : GameObjectSingleton<Logic> {
 		if (time <= 0) {
 			Stop();
 		}
+	}
+
+	private void OnScaleComplete() {
 	}
 
     private void SidescrollMode()
@@ -117,7 +135,8 @@ public  class Logic : GameObjectSingleton<Logic> {
 
 	public void Restart() {
 		time += roundTime;
-		//prota.transform.position = start.transform.position;
+		itween = false;
+
 		if (gameMode == GameMode.SIDESCROLL) {
 			gameMode = GameMode.TOPVIEW;
 		} else {
@@ -125,9 +144,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 		}
 
 		gameState = GameState.PLAYING;
-		//prota.transform.position = initialPosition;
 		prota.enabled = true;
-		//menuBackground.renderer.enabled = false;
 		camGUI.SetState(gameState);
 	}
 
@@ -137,10 +154,9 @@ public  class Logic : GameObjectSingleton<Logic> {
 		
 		prota.enabled = false;
 		menuBackground.renderer.material.color = prota.gameObject.renderer.material.color;
-		menuBackground.transform.localScale = new Vector3 (0.01f, 1.0f, 0.01f);
 		menuBackground.transform.position = prota.transform.position;
 		menuBackground.renderer.enabled = true;
-
+		itween = false;
 		gameState = GameState.WAITING;
 	}
 	

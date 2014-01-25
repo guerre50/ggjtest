@@ -16,7 +16,15 @@ public class MyGUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (_logic.gameState == Logic.GameState.PLAYING) timeText.text = _logic.time.ToString ("F2");
+		if (_logic.gameState == Logic.GameState.PLAYING) {
+			if (_logic.time < 3.0f) {
+				iTween.PunchScale(timeText.gameObject, new Vector3(0.03f, 0.0f, 0.03f), 0.5f);
+			}
+			timeText.text = _logic.time.ToString ("F2");
+		} else {
+			iTween.PunchScale(timeText.gameObject, new Vector3(0.05f, 0.0f, 0.05f), 0.2f);
+		}
+
 	}
 
 	public void SetState (Logic.GameState state) {
@@ -25,9 +33,12 @@ public class MyGUI : MonoBehaviour {
 			timeText.gameObject.SetActive (true);
 		}
 		else if (state == Logic.GameState.WAITING) {
+
 			menuText.text = "Player "+_logic.GetCurrentPlayer()+" press A";
 			menuText.gameObject.SetActive (true);
 			timeText.gameObject.SetActive (false);
+
+
 		}
 	}
 }
