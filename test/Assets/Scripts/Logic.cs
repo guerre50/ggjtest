@@ -6,8 +6,15 @@ public  class Logic : GameObjectSingleton<Logic> {
 	public float roundTime = 30.0f;
 	public float time;
 	public Prota prota;
+
 	public enum GameState {PLAYING, WAITING};
 	public GameState gameState = GameState.WAITING;
+    public enum GameMode {SIDESCROLL, TOPVIEW};
+    public GameMode gameMode = GameMode.SIDESCROLL;
+
+    private Vector3 sidescrollGravity = new Vector3(0, 0, -1.0f);
+    private Vector3 topviewGravity = new Vector3(0, -1.0f, 0);
+
 	public float startingMoney = 5.0f;
 	public int startingTraps = 5;
 	public float moneyPerSecond = 0.7f;
@@ -43,6 +50,21 @@ public  class Logic : GameObjectSingleton<Logic> {
 			WaitingState();
 			break;
 		}
+
+        // check in which mode
+        if (gameMode == Logic.GameMode.TOPVIEW && Physics.gravity != topviewGravity)
+        {
+            // when top down
+            Debug.Log("Gravity changed to topview");
+            Physics.gravity = topviewGravity;
+        }
+        else if (gameMode == Logic.GameMode.SIDESCROLL && Physics.gravity != sidescrollGravity)
+        {
+            // when side scrolling
+            Debug.Log("Gravity changed to sidescroll");
+            Physics.gravity = sidescrollGravity;
+        }
+            
 	}
 
 	private void WaitingState() {
