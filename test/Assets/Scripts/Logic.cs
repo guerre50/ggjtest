@@ -5,23 +5,33 @@ public  class Logic : GameObjectSingleton<Logic> {
 	public GameObject start;
 	public float roundTime = 30.0f;
 	public float time;
-	public Prota prota;
+	private Prota prota;
+
+	private Vector3 initialPosition;
 
 	public enum GameState {PLAYING, WAITING};
 	public GameState gameState = GameState.WAITING;
     public enum GameMode {SIDESCROLL, TOPVIEW};
-    public GameMode gameMode = GameMode.SIDESCROLL;
+    public GameMode gameMode = GameMode.TOPVIEW;
 
     private Vector3 sidescrollGravity = new Vector3(0, 0, -20.0f);
     private Vector3 topviewGravity = new Vector3(0, -20.0f, 0);
 
 	// Privates
 	private int currentPlayer = 0;
+	private MyGUI camGUI;
+	public GameObject menuBackground;
+
+	private float menuAnimationTime = 2.0f;
 
 	// Use this for initialization
 	void Start () {
+		prota = GameObject.FindGameObjectWithTag ("Player").GetComponent<Prota> ();
+		initialPosition = prota.gameObject.transform.position;
+		camGUI = GameObject.FindGameObjectWithTag ("MainCamera").GetComponentInChildren<MyGUI> ();
+		menuBackground = GameObject.FindGameObjectWithTag ("MenuBackground");
 		currentPlayer = 1;
-		//Restart();
+		Stop ();
 	}
 	
 	// Update is called once per frame
@@ -34,17 +44,6 @@ public  class Logic : GameObjectSingleton<Logic> {
 			WaitingState();
 			break;
 		}
-
-
-		if (InputController.GetKeyDown(InputController.Key.X, 0))
-		{
-			if (gameMode == GameMode.SIDESCROLL) {
-				gameMode = GameMode.TOPVIEW;
-			} else {
-				gameMode = GameMode.SIDESCROLL;
-			}
-		}
-
         // check in which mode
         if (gameMode == Logic.GameMode.TOPVIEW && Physics.gravity != topviewGravity)
         {
@@ -62,13 +61,27 @@ public  class Logic : GameObjectSingleton<Logic> {
 	}
 
 	private void WaitingState() {
-		if (InputController.GetKeyDown(InputController.Key.A)) {
-			gameState = GameState.PLAYING;
+		time -= Time.deltaTime;
+
+		if (time > 0.0f) {
+			menuBackground.transform.localScale = new Vector3(menuBackground.transform.localScale.x*1.1f, 2.0f, menuBackground.transform.localScale.z*1.1f);
+			menuBackground.transform.position = prota.transform.position;
+		}
+		else {
+			camGUI.SetState(gameState);
+			if (InputController.GetKeyDown (InputController.Key.A, currentPlayer)) {
+				Restart ();
+			}
 		}
 	}
 
 	private void PlayingState() {
 		time -= Time.deltaTime;
+
+		if (InputController.GetKeyDown(InputController.Key.Start, 0)) //Change players
+		{
+			Stop();
+		}
 
 		// World
 		if (time <= 0) {
@@ -89,11 +102,31 @@ public  class Logic : GameObjectSingleton<Logic> {
 	public void Restart() {
 		time = roundTime;
 		//prota.transform.position = start.transform.position;
-		gameState = GameState.WAITING;
-
-		currentPlayer = (currentPlayer + 1) % 2;
+		gameState = GameState.PLAYING;
+		prota.transform.position = initialPosition;
+		prota.enabled = true;
+		menuBackground.renderer.enabled = false;
+		camGUI.SetState(gameState);
 	}
 
+	public void Stop() {
+		currentPlayer = (currentPlayer + 1)%2;
+		time = menuAnimationTime;
+		
+		prota.enabled = false;
+		menuBackground.renderer.material.color = prota.gameObject.renderer.material.color;
+		menuBackground.transform.localScale = new Vector3 (0.01f, 1.0f, 0.01f);
+		menuBackground.transform.position = prota.transform.position;
+		menuBackground.renderer.enabled = true;
+		
+		if (gameMode == GameMode.SIDESCROLL) {
+			gameMode = GameMode.TOPVIEW;
+		} else {
+			gameMode = GameMode.SIDESCROLL;
+		}
+		gameState = GameState.WAITING;
+	}
+	
 	public int GetCurrentPlayer() {  // Between 1 and 2 (internally working between 0 and 1)
 		return currentPlayer + 1;
 	}
