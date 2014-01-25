@@ -36,6 +36,7 @@ public class Pushable : MonoBehaviour {
         }
 	}
 
+
     bool IsMovable()
     {
         return (movableIn == (MoveMode)_logic.gameMode) || (movableIn == MoveMode.BOTH);
