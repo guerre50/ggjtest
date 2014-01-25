@@ -1663,6 +1663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movableIn: 2
   graphics: {fileID: 1767085025}
+  currentColor: {r: 255, g: 255, b: 255, a: 1}
 --- !u!54 &1403377588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2077,6 +2078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movableIn: 1
   graphics: {fileID: 639403017}
+  currentColor: {r: 255, g: 255, b: 255, a: 1}
 --- !u!54 &1806424719
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2743,6 +2745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movableIn: 0
   graphics: {fileID: 734482205}
+  currentColor: {r: 255, g: 255, b: 255, a: 1}
 --- !u!54 &2035775373
 Rigidbody:
   m_ObjectHideFlags: 0
