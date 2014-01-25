@@ -8,7 +8,6 @@ public class Prota : MonoBehaviour {
 	public int life = 4;
 	public int traps = 5;
 	public GameObject trap;
-	private bool topView = true;
 	private bool onAir = false;
 	private bool jumping = false;
 	public float speed = 15.0f;
@@ -19,30 +18,19 @@ public class Prota : MonoBehaviour {
 	public float gravityNum = 9.87f;
 	public GameObject groundParticles;
 	public GameObject groundParticlesPosition;
+	private Logic _logic;
 
 	void Start () {
+		_logic = Logic.instance;
 	}
 
 	void Update () {
 		UpdateMovement();
 		Actions();
-
-		if (Input.GetKeyDown(KeyCode.Q)){ 
-			topView = !topView;
-			Vector3 gravity = Physics.gravity;
-			if (topView) {
-				gravity.y = -gravityNum;
-				gravity.z = 0;
-			} else {
-				gravity.z = -gravityNum;
-				gravity.y = 0;
-			}
-			Physics.gravity = gravity;
-		}
 	}
 
 	public void UpdateMovement() {
-		if (topView) {
+		if (_logic.gameMode == Logic.GameMode.TOPVIEW) {
 			TopView();
 		} else {
 			SideScroller();
