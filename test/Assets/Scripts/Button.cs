@@ -15,7 +15,7 @@ public class Button : MonoBehaviour {
 
 	void Start() {
 		_logic = Logic.instance;
-        graphics.renderer.material.color = keyBox.GetComponentInChildren<Renderer>().material.color;
+        //graphics.renderer.material.color = keyBox.GetComponentInChildren<Renderer>().material.color;
 	}
 
 	void FixedUpdate () {
