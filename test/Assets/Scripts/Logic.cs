@@ -57,12 +57,14 @@ public  class Logic : GameObjectSingleton<Logic> {
             // when top down
             Debug.Log("Gravity changed to topview");
             Physics.gravity = topviewGravity;
+            TopviewMode();
         }
         else if (gameMode == Logic.GameMode.SIDESCROLL && Physics.gravity != sidescrollGravity)
         {
             // when side scrolling
             Debug.Log("Gravity changed to sidescroll");
             Physics.gravity = sidescrollGravity;
+            SidescrollMode();
         }
             
 	}
@@ -90,6 +92,24 @@ public  class Logic : GameObjectSingleton<Logic> {
 			Restart();
 		}
 	}
+
+    private void SidescrollMode()
+    {
+        Debug.Log("entered sidescrollmode");
+        if (InputController.GetKeyDown(InputController.Key.A,0))
+        {
+            Debug.Log("G was pressed");
+            gameMode = GameMode.TOPVIEW;
+        }
+    }
+
+    private void TopviewMode()
+    {
+        if (InputController.GetKeyDown(InputController.Key.A,0))
+        {
+            gameMode = GameMode.SIDESCROLL;
+        }
+    }
 
 	public void Restart() {
 		time = roundTime;
