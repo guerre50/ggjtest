@@ -30,15 +30,11 @@ public class MyGUI : MonoBehaviour {
 
 	private void WaitingState() {
 		middleText.gameObject.SetActive(true);
-		moneyText.gameObject.SetActive (false);
 	}
 	
 	private void PlayingState() {
 		middleText.gameObject.SetActive(false);
 		lifeText.text = _logic.prota.life +"";
-		trapsText.text = _logic.GetCurrentPlayerTraps() +"";
-		moneyText.gameObject.SetActive (true);
 		timeText.text = _logic.time.ToString("F1") + "";
-		moneyText.text = _logic.GetCurrentPlayerMoney() + " $";
 	}
 }

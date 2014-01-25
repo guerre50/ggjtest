@@ -6,8 +6,6 @@ public class Prota : MonoBehaviour {
 	public float accel = 0.5f;
 	private float velocity = 0.0f;
 	public int life = 4;
-	public int traps = 5;
-	public GameObject trap;
 	private bool onAir = false;
 	private bool jumping = false;
 	public float speed = 15.0f;
