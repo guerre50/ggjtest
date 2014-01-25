@@ -110,8 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPressableIn: 1
-  doors:
-  - {fileID: 0}
+  doors: []
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
