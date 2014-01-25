@@ -130,9 +130,10 @@ public class Prota : MonoBehaviour {
 			if (col.transform.renderer) {
 				particleSystem.startColor = col.transform.renderer.material.color;
 			}
-			particleSystem.Emit((int)col.relativeVelocity.magnitude);
+			particleSystem.transform.forward = col.contacts[0].normal;
+			particleSystem.Emit((int)col.relativeVelocity.magnitude/2);
 			particles.transform.parent = col.transform;
-			Destroy(particles, 0.5f);
+			Destroy(particles, 1.0f);
 		}
 		float scaleX = Mathf.Lerp( 1.0f, 1.3f, Mathf.Abs(col.relativeVelocity.x)/2.0f);
 		float scaleZ = Mathf.Lerp( 0.8f, 1.0f, 2.0f/Mathf.Abs(col.relativeVelocity.z));

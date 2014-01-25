@@ -6,6 +6,7 @@ public class Pushable : MonoBehaviour {
     public MoveMode movableIn;
     private Logic _logic;
     private Bounce bounceScript;
+	public GameObject graphics;
 
 	// Use this for initialization
 	void Start () {
@@ -17,17 +18,16 @@ public class Pushable : MonoBehaviour {
 	void Update () {
         if (IsMovable())
         {
-            Debug.Log(bounceScript);
             bounceScript.enabled = true;
             rigidbody.isKinematic = false;
-            renderer.material.color = new Color(255,0,255);
+			graphics.renderer.material.color = new Color(255,0,255);
 
         }
         else
         {
             bounceScript.enabled = false;
             rigidbody.isKinematic = true;
-            renderer.material.color = new Color(255,255,255);
+			graphics.renderer.material.color = new Color(255,255,255);
         }
 	}
 
