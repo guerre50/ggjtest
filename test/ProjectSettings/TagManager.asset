@@ -3,6 +3,8 @@
 --- !u!78 &1
 TagManager:
   tags:
+  - Pushable
+  - 
   - Rock
   - 
   Builtin Layer 0: Default
