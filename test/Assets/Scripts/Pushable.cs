@@ -17,7 +17,6 @@ public class Pushable : MonoBehaviour {
 	void Update () {
         if (IsMovable())
         {
-            Debug.Log(bounceScript);
             bounceScript.enabled = true;
             rigidbody.isKinematic = false;
             renderer.material.color = new Color(255,0,255);
