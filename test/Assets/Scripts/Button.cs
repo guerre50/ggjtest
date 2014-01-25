@@ -9,17 +9,21 @@ public class Button : MonoBehaviour {
 
 	private bool buttonActive = false;
 	private bool wasActive = false;
-	public GameObject graphics;
 
 	private Logic _logic;
 
 	void Start() {
 		_logic = Logic.instance;
-        graphics.renderer.material.color = keyBox.GetComponentInChildren<Renderer>().material.color;
+        //graphics.renderer.material.color = keyBox.GetComponentInChildren<Renderer>().material.color;
 	}
 
 	void FixedUpdate () {
-		graphics.renderer.enabled = IsVisible();
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer r in renderers)
+        {
+            r.enabled = IsVisible();
+        }
 
         if (buttonActive)
         {
@@ -42,12 +46,6 @@ public class Button : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider col) {
-        // check if button is pressable in this mode
-		//if(InOwnMode()) {
-            if (col.gameObject.tag == "Rock") {
-			    buttonActive = true;
-		    }
-		//}
         if (col.gameObject == keyBox.gameObject)
         {
             // draw key to center of button
