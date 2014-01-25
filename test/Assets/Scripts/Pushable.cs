@@ -2,23 +2,30 @@
 using System.Collections;
 
 public class Pushable : MonoBehaviour {
-    public Logic.GameMode movableIn;
+    public enum MoveMode {SIDESCROLL, TOPVIEW, BOTH}; 
+    public MoveMode movableIn;
     private Logic _logic;
+    private Bounce bounceScript;
 
 	// Use this for initialization
 	void Start () {
         _logic = Logic.instance;
+        bounceScript = GetComponent<Bounce>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (IsMovable())
         {
+            Debug.Log(bounceScript);
+            bounceScript.enabled = true;
             rigidbody.isKinematic = false;
             renderer.material.color = new Color(255,0,255);
+
         }
         else
         {
+            bounceScript.enabled = false;
             rigidbody.isKinematic = true;
             renderer.material.color = new Color(255,255,255);
         }
@@ -26,6 +33,6 @@ public class Pushable : MonoBehaviour {
 
     bool IsMovable()
     {
-        return movableIn == _logic.gameMode;
+        return (movableIn == (MoveMode)_logic.gameMode) || (movableIn == MoveMode.BOTH);
     }
 }
