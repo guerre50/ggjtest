@@ -116,11 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6cd7c5c3b77c241aecb149e863b5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeText: {fileID: 28357096}
-  middleText: {fileID: 374367348}
-  lifeText: {fileID: 1247807995}
-  trapsText: {fileID: 1384531852}
-  moneyText: {fileID: 1197529314}
 --- !u!1 &7814112
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,7 +858,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 1000
+  far clip plane: 50
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -887,8 +882,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5488e098d8f4eb492591bb089fe793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strengthX: .419999987
-  strengthY: .419999987
+  strengthX: .100000001
+  strengthY: .100000001
   fishEyeShader: {fileID: 4800000, guid: 874ceab4425f64bccb1d14032f4452b1, type: 3}
 --- !u!114 &226834288
 MonoBehaviour:
@@ -1687,7 +1682,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -25.7917099, y: 0, z: -20.9104366}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1274671392}
   m_Father: {fileID: 0}
 --- !u!114 &487292500
 MonoBehaviour:
@@ -1706,6 +1702,14 @@ MonoBehaviour:
   life: 4
   traps: 5
   trap: {fileID: 100000, guid: 0279f5188d145d44aa3dc629bff779be, type: 2}
+  speed: 7.07999992
+  airMaxVelocity: 183.600006
+  airFriction: 96.0999985
+  airAcceleration: 259.299988
+  jump: 15.71
+  gravityNum: 21.3199997
+  groundParticles: {fileID: 100000, guid: 200c008bd50f2a443b339480ad2333c2, type: 2}
+  groundParticlesPosition: {fileID: 1274671391}
 --- !u!23 &487292501
 Renderer:
   m_ObjectHideFlags: 0
@@ -1758,7 +1762,7 @@ Rigidbody:
   m_GameObject: {fileID: 487292498}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 100
+  m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -3445,6 +3449,32 @@ Renderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
+--- !u!1 &1274671391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100002, guid: 50f8d135f642b164b9c527c14539aa86, type: 2}
+  m_PrefabInternal: {fileID: 370604365}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1274671392}
+  m_Layer: 0
+  m_Name: groundParticlesPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1274671392
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400002, guid: 50f8d135f642b164b9c527c14539aa86, type: 2}
+  m_PrefabInternal: {fileID: 370604365}
+  m_GameObject: {fileID: 1274671391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: .658049107, z: -.537732124}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 487292499}
 --- !u!1 &1288561387
 GameObject:
   m_ObjectHideFlags: 0
@@ -3970,9 +4000,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1465242315}
   - 20: {fileID: 1465242319}
-  - 124: {fileID: 1465242318}
-  - 92: {fileID: 1465242317}
-  - 81: {fileID: 1465242316}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -3991,30 +4018,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 226834281}
---- !u!81 &1465242316
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 8100002, guid: b7d2cfc9d33976144ada7c7972ff637a,
-    type: 2}
-  m_PrefabInternal: {fileID: 804151391}
-  m_GameObject: {fileID: 1465242314}
-  m_Enabled: 1
---- !u!92 &1465242317
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9200002, guid: b7d2cfc9d33976144ada7c7972ff637a,
-    type: 2}
-  m_PrefabInternal: {fileID: 804151391}
-  m_GameObject: {fileID: 1465242314}
-  m_Enabled: 1
---- !u!124 &1465242318
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 12400002, guid: b7d2cfc9d33976144ada7c7972ff637a,
-    type: 2}
-  m_PrefabInternal: {fileID: 804151391}
-  m_GameObject: {fileID: 1465242314}
-  m_Enabled: 1
 --- !u!20 &1465242319
 Camera:
   m_ObjectHideFlags: 0
@@ -4033,7 +4036,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 1000
+  far clip plane: 10
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -4311,6 +4314,7 @@ MonoBehaviour:
   time: 15
   prota: {fileID: 487292500}
   gameState: 1
+  gameMode: 0
   startingMoney: 5
   startingTraps: 5
   moneyPerSecond: .699999988

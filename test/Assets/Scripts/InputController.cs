@@ -27,7 +27,7 @@ public static class InputController {
 	private static KeyCode[][] ToKeyboardKeyCode = new KeyCode[24][] {
 		/* A */		new KeyCode[]{ KeyCode.B, KeyCode.Space, KeyCode.Space, KeyCode.Space, KeyCode.Space}, 
 		/* B */		new KeyCode[]{}, 
-		/* X */		new KeyCode[]{ }, 
+		/* X */		new KeyCode[]{ KeyCode.G, KeyCode.G,KeyCode.G,KeyCode.G,KeyCode.G}, 
 		/* Y */		new KeyCode[]{KeyCode.B, KeyCode.B, KeyCode.B, KeyCode.B, KeyCode.B}, 
 		/* LB */	new KeyCode[]{}, 
 		/* RB */	new KeyCode[]{},
