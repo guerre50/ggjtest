@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Button : MonoBehaviour {
 
-	public bool floored = true;
+    public Logic.GameMode buttonPressableIn;
 	public GameObject[] doors;
 
 	private bool buttonActive = false;
@@ -16,10 +16,14 @@ public class Button : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (buttonActive) {
-			if (!wasActive) NotifyDoors(true);
-		}
-		else if (wasActive) NotifyDoors(false);
+        if (buttonActive)
+        {
+            if (!wasActive) NotifyDoors(true);
+        }
+        else
+        {
+            if (wasActive) NotifyDoors(false);
+        }
 
 		wasActive = buttonActive;
 		buttonActive = false;
@@ -31,14 +35,18 @@ public class Button : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider col) {
-		if (col.gameObject.tag == "Rock") {
-			buttonActive = true;
-		}
+        // check if button is pressable in this mode
+        if(InOwnMode()) {
+            if (col.gameObject.tag == "Rock") {
+			    buttonActive = true;
+		    }
+        }
 	}
 
-	public bool InOwnMode() {
-		return (floored && (_logic.gameMode == Logic.GameMode.SIDESCROLL)) || (!floored && (_logic.gameMode == Logic.GameMode.TOPVIEW));
-	}
+    public bool InOwnMode()
+    {
+        return buttonPressableIn == _logic.gameMode;
+    }
 
 	void OnDrawGizmos() {
 		Gizmos.color = Color.green;
