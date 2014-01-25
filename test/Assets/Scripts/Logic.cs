@@ -11,6 +11,8 @@ public  class Logic : GameObjectSingleton<Logic> {
 	public float startingMoney = 5.0f;
 	public int startingTraps = 5;
 	public float moneyPerSecond = 0.7f;
+	public float timeStealPerPress = 0.1f;
+	public float moneyPerSteal = 0.5f;
 
 	// Prices
 	public float trapPrice = 1.0f;
@@ -51,8 +53,17 @@ public  class Logic : GameObjectSingleton<Logic> {
 
 	private void PlayingState() {
 		time -= Time.deltaTime;
+
+		// Playing player
 		money [currentPlayer] += Time.deltaTime * moneyPerSecond;
 
+		// Waiting player
+		if (InputController.GetKeyDown (InputController.Key.A)) {
+			time -= timeStealPerPress;
+			money[currentPlayer] += moneyPerSteal;
+		}
+
+		// World
 		if (time <= 0) {
 			Restart();
 		}
