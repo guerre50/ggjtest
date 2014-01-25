@@ -86,7 +86,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 	}
 
 	public bool CheckAndPlaceTrap() {
-		if (traps[currentPlayer] > 0) {
+		if (traps[currentPlayer] > 0 || (CheckAndBuyTrap())) {
 			--traps[currentPlayer];
 
 			return true;
@@ -102,6 +102,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 	public bool CheckAndBuyTrap() {
 		if (money[currentPlayer] >= trapPrice) {
 			money[currentPlayer] -= trapPrice;
+			traps[currentPlayer] += 1;
 			return true;
 		}
 		return false;

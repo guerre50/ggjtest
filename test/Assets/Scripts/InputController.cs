@@ -15,7 +15,7 @@ using System;
 public static class InputController {
 	public const int MAX_PLAYERS = 4;
 	// if true then vibration of a player just happens if it's using joystick
-	public static bool intelligentVibration = true;
+	public static bool intelligentVibration = false;
 	
 	// TO-DO Add here your devices
 	public enum InputDevice {Keyboard, Joystick, GreenThrottle, Move, Custom};
@@ -27,7 +27,7 @@ public static class InputController {
 	private static KeyCode[][] ToKeyboardKeyCode = new KeyCode[24][] {
 		/* A */		new KeyCode[]{ KeyCode.B, KeyCode.Space, KeyCode.Space, KeyCode.Space, KeyCode.Space}, 
 		/* B */		new KeyCode[]{}, 
-		/* X */		new KeyCode[]{}, 
+		/* X */		new KeyCode[]{ }, 
 		/* Y */		new KeyCode[]{KeyCode.B, KeyCode.B, KeyCode.B, KeyCode.B, KeyCode.B}, 
 		/* LB */	new KeyCode[]{}, 
 		/* RB */	new KeyCode[]{},
