@@ -45,7 +45,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 		time = 0.0f;
 		
 		prota.enabled = false;
-		menuBackground.renderer.material.color = prota.gameObject.renderer.material.color;
+		menuBackground.renderer.material.color = prota.body.renderer.material.color;
 		menuBackground.transform.position = prota.transform.position + Camera.main.transform.forward*-5;
 		menuBackground.renderer.enabled = true;
 
