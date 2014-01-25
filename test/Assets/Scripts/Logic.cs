@@ -22,7 +22,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 	private MyGUI camGUI;
 	public GameObject menuBackground;
 
-	private float menuAnimationTime = 2.0f;
+	private float menuAnimationTime = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -73,7 +73,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 		time -= Time.deltaTime;
 
 		if (time > 0.0f) {
-			menuBackground.transform.localScale = new Vector3(menuBackground.transform.localScale.x*1.1f, 2.0f, menuBackground.transform.localScale.z*1.1f);
+			menuBackground.transform.localScale = new Vector3(menuBackground.transform.localScale.x*(2.0f - menuAnimationTime/10.0f), 2.0f, menuBackground.transform.localScale.z*(2.0f - menuAnimationTime/10.0f));
 			menuBackground.transform.position = prota.transform.position;
 		}
 		else {
