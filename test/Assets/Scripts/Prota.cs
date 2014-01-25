@@ -8,6 +8,7 @@ public class Prota : MonoBehaviour {
 	public int life = 4;
 	public int traps = 5;
 	public GameObject trap;
+	private Vector3 initialScale;
 	private bool onAir = false;
 	private bool jumping = false;
 	public float speed = 15.0f;
@@ -20,9 +21,13 @@ public class Prota : MonoBehaviour {
 	public GameObject groundParticlesPosition;
 	public GameObject body;
 	private Logic _logic;
+	private bool _tween = false;
 
 	void Start () {
 		_logic = Logic.instance;
+		initialScale = transform.localScale;
+		Physics.maxAngularVelocity = speed;
+		rigidbody.maxAngularVelocity = speed;
 	}
 
 	void Update () {
@@ -48,22 +53,23 @@ public class Prota : MonoBehaviour {
 	public void SideScroller() {
 		Vector2 movement = InputController.GetMovement(1);
 		Vector3 velocity = rigidbody.velocity;
+		Vector3 angularVelocity = rigidbody.angularVelocity;
 
 		if (!onAir) {
 			if (movement.x > 0){
-				velocity.x = speed;
+				angularVelocity.y = speed;
 			} else if (movement.x < 0) {
-				velocity.x = -speed;
+				angularVelocity.y = -speed;
 			} else{
-				velocity.x =0;
+				angularVelocity.y =0;
 			}
 			
 			jumping = false;
 		} else {
 			//velocity.x = 0;
-			if (movement.x < 0 && velocity.x > -airMaxVelocity) {
+			if (movement.x < 0 && velocity.y > -airMaxVelocity) {
 				velocity.x -= Time.deltaTime*airAcceleration;
-			} else if (movement.x > 0 && velocity.x < airMaxVelocity) {
+			} else if (movement.x > 0 && velocity.y < airMaxVelocity) {
 				velocity.x += Time.deltaTime*airAcceleration;
 			}
 		}
@@ -73,10 +79,22 @@ public class Prota : MonoBehaviour {
 			velocity.z = jump;
 			
 			jumping = true;
+			onAir = true;
+			//iTween.Stop(body);
+			transform.localScale = initialScale;
+			if (!_tween) {
+				_tween = true;  
+				iTween.ScaleFrom(body, iTween.Hash(
+				"scale", new Vector3(0.7f, 0.8f, 1.1f), 
+				"time", 0.5f,
+				"onComplete", "OnScaleComplete",
+				"onCompleteTarget", gameObject));
+			}
 		} else if (jumping && onAir) { 
 			// variable jump
 			velocity.z -= airFriction*Time.deltaTime;
 		} 
+		rigidbody.angularVelocity = angularVelocity;
 		rigidbody.velocity = velocity;
 	}
 
@@ -102,22 +120,36 @@ public class Prota : MonoBehaviour {
 		particleSystem.Emit((int)col.relativeVelocity.magnitude);
 		particles.transform.parent = col.transform;
 		Destroy(particles, 0.5f);
-		float scaleX = Mathf.Lerp( 0.5f, 1.0f, 2.0f/Mathf.Abs(col.relativeVelocity.x));
-		float scaleZ = Mathf.Lerp( 0.5f, 1.0f, 2.0f/Mathf.Abs(col.relativeVelocity.z));
-		//Debug.Log(scaleX + " " + scaleZ);
-		iTween.ScaleFrom(body, iTween.Hash(
-			"value", new Vector3(scaleX, 0.8f, scaleZ), 
-			"time", 0.3f,
-			"onupdate", "OnScale"));
+		float scaleX = Mathf.Lerp( 1.0f, 1.3f, Mathf.Abs(col.relativeVelocity.x)/2.0f);
+		float scaleZ = Mathf.Lerp( 0.8f, 1.0f, 2.0f/Mathf.Abs(col.relativeVelocity.z));
+
+		//iTween.Stop(body);
+		transform.localScale = initialScale; 
+		if (!_tween) {
+			_tween = true;
+			iTween.ScaleFrom(body, iTween.Hash(
+			"scale", new Vector3(scaleX, 0.8f, scaleZ), 
+			"time", 0.5f,
+			"onUpdate", "OnScale",
+			"onUpdateTarget", gameObject,
+			"onComplete", "OnScaleComplete",
+			"onCompleteTarget", gameObject));
+		}
 	}
 
 	public void OnScale() {
 		Vector3 pos = body.transform.localPosition;
 		pos.z = body.transform.localScale.z/2;
 	}
+
+	public void OnScaleComplete() {
+		_tween = false;
+		body.transform.localScale = initialScale;
+	}
 	
 	void OnCollisionStay(Collision col) {
-		if(col.contacts[0].normal.z >= 0) {
+		Vector3 inverseNormal = transform.InverseTransformDirection(col.contacts[0].normal);
+		if(col.contacts[0].normal.z >= 0 && Mathf.Abs(inverseNormal.x) <= 0.5f) {
 			onAir = false;
 			if (jumping) {
 				
