@@ -32,7 +32,7 @@ public static class InputController {
 		/* LB */	new KeyCode[]{}, 
 		/* RB */	new KeyCode[]{},
 		/* Back */	new KeyCode[]{}, 
-		/* Start */	new KeyCode[]{}, 
+		/* Start */	new KeyCode[]{KeyCode.Escape, KeyCode.Escape, KeyCode.Escape, KeyCode.Escape, KeyCode.Escape}, 
 		/* L3 */	new KeyCode[]{}, 
 		/* R3 */	new KeyCode[]{}, 
 		/* LT */	new KeyCode[]{}, 

@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class MyGUI : MonoBehaviour {
-	public TextMesh timeText;
-	public TextMesh middleText;
-	public TextMesh lifeText;
-	public TextMesh trapsText;
-	public TextMesh moneyText;
+	//public TextMesh timeText;
+	//public TextMesh middleText;
+	//public TextMesh lifeText;
+	//public TextMesh trapsText;
+	public TextMesh menuText;
 	private Logic _logic;
 
 	// Use this for initialization
@@ -16,25 +16,15 @@ public class MyGUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		switch(_logic.gameState) {
-		case Logic.GameState.PLAYING:
-			PlayingState();
-			break;
-		case Logic.GameState.WAITING:
-			WaitingState();
-			break;
+
+	}
+
+	public void SetState (Logic.GameState state) {
+		if (state == Logic.GameState.PLAYING)
+			menuText.gameObject.SetActive (false);
+		else if (state == Logic.GameState.WAITING) {
+			menuText.text = "Player "+_logic.GetCurrentPlayer()+" press A";
+			menuText.gameObject.SetActive (true);
 		}
-
-
-	}
-
-	private void WaitingState() {
-		middleText.gameObject.SetActive(true);
-	}
-	
-	private void PlayingState() {
-		middleText.gameObject.SetActive(false);
-		lifeText.text = _logic.prota.life +"";
-		timeText.text = _logic.time.ToString("F1") + "";
 	}
 }
