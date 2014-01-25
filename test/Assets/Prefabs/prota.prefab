@@ -60,7 +60,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .674660921, y: 0, z: -6.48191595}
+  m_LocalPosition: {x: -3.80444837, y: 2.093997, z: -1.7754097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -199,11 +199,11 @@ MonoBehaviour:
   life: 4
   traps: 5
   trap: {fileID: 100000, guid: 0279f5188d145d44aa3dc629bff779be, type: 2}
-  speed: 10
-  airMaxVelocity: 10
-  airFriction: 20
+  speed: 5
+  airMaxVelocity: 12
+  airFriction: 50
   airAcceleration: 10
-  jump: 10
+  jump: 20
   gravityNum: 9.86999989
   groundParticles: {fileID: 100000, guid: 200c008bd50f2a443b339480ad2333c2, type: 2}
   groundParticlesPosition: {fileID: 100002}

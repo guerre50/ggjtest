@@ -12,8 +12,8 @@ public  class Logic : GameObjectSingleton<Logic> {
     public enum GameMode {SIDESCROLL, TOPVIEW};
     public GameMode gameMode = GameMode.SIDESCROLL;
 
-    private Vector3 sidescrollGravity = new Vector3(0, 0, -1.0f);
-    private Vector3 topviewGravity = new Vector3(0, -1.0f, 0);
+    private Vector3 sidescrollGravity = new Vector3(0, 0, -20.0f);
+    private Vector3 topviewGravity = new Vector3(0, -20.0f, 0);
 
 	public float startingMoney = 5.0f;
 	public int startingTraps = 5;
@@ -51,6 +51,16 @@ public  class Logic : GameObjectSingleton<Logic> {
 			break;
 		}
 
+
+		if (InputController.GetKeyDown(InputController.Key.X, 0))
+		{
+			if (gameMode == GameMode.SIDESCROLL) {
+				gameMode = GameMode.TOPVIEW;
+			} else {
+				gameMode = GameMode.SIDESCROLL;
+			}
+		}
+
         // check in which mode
         if (gameMode == Logic.GameMode.TOPVIEW && Physics.gravity != topviewGravity)
         {
@@ -62,7 +72,6 @@ public  class Logic : GameObjectSingleton<Logic> {
         else if (gameMode == Logic.GameMode.SIDESCROLL && Physics.gravity != sidescrollGravity)
         {
             // when side scrolling
-            Debug.Log("Gravity changed to sidescroll");
             Physics.gravity = sidescrollGravity;
             SidescrollMode();
         }
@@ -95,20 +104,12 @@ public  class Logic : GameObjectSingleton<Logic> {
 
     private void SidescrollMode()
     {
-        Debug.Log("entered sidescrollmode");
-        if (InputController.GetKeyDown(InputController.Key.A,0))
-        {
-            Debug.Log("G was pressed");
-            gameMode = GameMode.TOPVIEW;
-        }
+
     }
 
     private void TopviewMode()
     {
-        if (InputController.GetKeyDown(InputController.Key.A,0))
-        {
-            gameMode = GameMode.SIDESCROLL;
-        }
+        
     }
 
 	public void Restart() {

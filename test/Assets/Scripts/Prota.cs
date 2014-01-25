@@ -117,10 +117,13 @@ public class Prota : MonoBehaviour {
 	}
 	
 	void OnCollisionStay(Collision col) {
-		onAir = false;
-		if (jumping) {
-
+		if(col.contacts[0].normal.z >= 0) {
+			onAir = false;
+			if (jumping) {
+				
+			}
 		}
+
 	}
 	
 	void OnCollisionExit(Collision col) {

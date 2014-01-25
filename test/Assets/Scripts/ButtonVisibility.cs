@@ -10,6 +10,6 @@ public class ButtonVisibility : MonoBehaviour {
 	}
 
 	void Update () {
-		renderer.enabled = button.InOwnMode ();
+		renderer.enabled = !button.InOwnMode ();
 	}
 }

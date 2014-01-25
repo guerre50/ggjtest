@@ -15,6 +15,6 @@ public class CameraBehaviour : MonoBehaviour {
 		targetPosition.x = prota.transform.position.x;
 		targetPosition.z = prota.transform.position.z;
 
-		iTween.MoveUpdate(gameObject, targetPosition, 1f);
+		iTween.MoveUpdate(gameObject, targetPosition, 3f);
 	}
 }
