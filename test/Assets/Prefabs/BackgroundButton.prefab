@@ -27,7 +27,6 @@ GameObject:
   - 4: {fileID: 400002}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: ButtonVisual
   m_TagString: Untagged
@@ -109,19 +108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49834bad23ad60f438ecd9aa3ef2c0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPressableIn: 1
-  doors: []
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f764ebc054e4a4e907b5af66c274c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  buttonVisibleIn: 0
+  doors:
+  - {fileID: 0}
+  keyBox: {fileID: 100000, guid: bf8aefc450c298f42bb2cbdbaf71d510, type: 2}
+  graphics: {fileID: 100002}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

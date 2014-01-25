@@ -9,16 +9,17 @@ public class Button : MonoBehaviour {
 
 	private bool buttonActive = false;
 	private bool wasActive = false;
+	public GameObject graphics;
 
 	private Logic _logic;
 
 	void Start() {
 		_logic = Logic.instance;
-        renderer.material.color = keyBox.renderer.material.color;
+        graphics.renderer.material.color = keyBox.GetComponentInChildren<Renderer>().material.color;
 	}
 
 	void FixedUpdate () {
-        renderer.enabled = IsVisible();
+		graphics.renderer.enabled = IsVisible();
 
         if (buttonActive)
         {
