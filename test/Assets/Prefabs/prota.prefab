@@ -185,8 +185,6 @@ MonoBehaviour:
   maxVelocity: 5
   accel: .5
   life: 4
-  traps: 5
-  trap: {fileID: 100000, guid: 0279f5188d145d44aa3dc629bff779be, type: 2}
   speed: 100
   airMaxVelocity: 12
   airFriction: 50
@@ -196,6 +194,7 @@ MonoBehaviour:
   groundParticles: {fileID: 100000, guid: 200c008bd50f2a443b339480ad2333c2, type: 2}
   groundParticlesPosition: {fileID: 100002}
   body: {fileID: 100004}
+  multipliers: {x: 1000, y: 100}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

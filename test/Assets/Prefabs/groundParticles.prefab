@@ -202,7 +202,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4294967295
+        rgba: 4292971007
       minMaxState: 0
     startSize:
       scalar: .0500000007
@@ -270,7 +270,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    gravityModifier: 1
+    gravityModifier: .5
     inheritVelocity: 1
     maxNumParticles: 5
   ShapeModule:

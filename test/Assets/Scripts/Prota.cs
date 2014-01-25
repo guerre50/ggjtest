@@ -20,6 +20,7 @@ public class Prota : MonoBehaviour {
 	public GameObject body;
 	private Logic _logic;
 	private bool _tween = false;
+	public Vector2 multipliers;
 
 	void Start () {
 		_logic = Logic.instance;
@@ -105,19 +106,34 @@ public class Prota : MonoBehaviour {
 		}
 		velocity = Mathf.Clamp(velocity, 0, maxVelocity);
 		
-		mov *= (velocity*Time.deltaTime);
-		transform.Translate(mov.x, 0, mov.y);
+
+		float multiplier = multipliers.x;
+		if (mov.magnitude == 0) {
+			multiplier = multipliers.y;
+		}
+		mov *= (velocity*multiplier*Time.deltaTime);
+		mov = Vector3.ClampMagnitude(mov, maxVelocity);
+		transform.rigidbody.velocity = Vector3.MoveTowards (transform.rigidbody.velocity, new Vector3(mov.x, 0, mov.y), 1f);
+
+
 	}
 
 	void OnCollisionEnter(Collision col) {
-		GameObject particles = Instantiate(groundParticles, groundParticlesPosition.transform.position, groundParticlesPosition.transform.rotation) as GameObject;
-		ParticleSystem particleSystem = particles.GetComponentInChildren<ParticleSystem>();
-		if (col.transform.renderer) {
-			particleSystem.startColor = col.transform.renderer.material.color;
+
+		if (_logic.gameMode == Logic.GameMode.SIDESCROLL) {
+			Vector3 particlesPosition = col.contacts[0].point;
+			particlesPosition.y = groundParticlesPosition.transform.position.y;
+
+			GameObject particles = Instantiate(groundParticles, particlesPosition, groundParticlesPosition.transform.rotation) as GameObject;
+			ParticleSystem particleSystem = particles.GetComponentInChildren<ParticleSystem>();
+
+			if (col.transform.renderer) {
+				particleSystem.startColor = col.transform.renderer.material.color;
+			}
+			particleSystem.Emit((int)col.relativeVelocity.magnitude);
+			particles.transform.parent = col.transform;
+			Destroy(particles, 0.5f);
 		}
-		particleSystem.Emit((int)col.relativeVelocity.magnitude);
-		particles.transform.parent = col.transform;
-		Destroy(particles, 0.5f);
 		float scaleX = Mathf.Lerp( 1.0f, 1.3f, Mathf.Abs(col.relativeVelocity.x)/2.0f);
 		float scaleZ = Mathf.Lerp( 0.8f, 1.0f, 2.0f/Mathf.Abs(col.relativeVelocity.z));
 
