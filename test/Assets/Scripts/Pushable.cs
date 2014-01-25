@@ -15,10 +15,12 @@ public class Pushable : MonoBehaviour {
         if (IsMovable())
         {
             rigidbody.isKinematic = false;
+            renderer.material.color = new Color(255,0,255);
         }
         else
         {
             rigidbody.isKinematic = true;
+            renderer.material.color = new Color(255,255,255);
         }
 	}
 
