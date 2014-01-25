@@ -7,6 +7,7 @@ public class Prota : MonoBehaviour {
 	private float velocity = 0.0f;
 	public int life = 4;
 	public int traps = 5;
+	public GameObject trap;
 
 	private Logic _logic;
 
@@ -36,7 +37,10 @@ public class Prota : MonoBehaviour {
 
 	public void Actions() {
 		if (InputController.GetKeyDown(InputController.Key.A, _logic.GetCurrentPlayer())) {
-
+			if (_logic.CheckAndPlaceTrap()) {
+				GameObject newTrap = Instantiate(trap, transform.position, transform.rotation) as GameObject;
+				newTrap.GetComponent<Trap>().Player = _logic.GetCurrentPlayer();
+			}
 		}
 
 		if (InputController.GetKeyDown(InputController.Key.Y, _logic.GetCurrentPlayer())) {

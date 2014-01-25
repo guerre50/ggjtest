@@ -2,9 +2,20 @@
 using System.Collections;
 
 public class Trap : MonoBehaviour {
+	public int Player { get; set; }
+
+	void Update() {
+		if (Player != Logic.instance.GetCurrentPlayer()) {
+			Color c = renderer.material.color;
+			c.a = 0;
+			renderer.material.color = c;
+		}
+	}
 
 	void OnTriggerEnter(Collider col) {
-		col.gameObject.SendMessage("DealDamage", SendMessageOptions.DontRequireReceiver);
-		Destroy (gameObject);
+		if (Player != Logic.instance.GetCurrentPlayer()) {
+			col.gameObject.SendMessage("DealDamage", SendMessageOptions.DontRequireReceiver);
+			Destroy (gameObject);
+		}
 	}
 }

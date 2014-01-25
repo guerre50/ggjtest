@@ -36,7 +36,7 @@ public class GUI : MonoBehaviour {
 	private void PlayingState() {
 		middleText.gameObject.SetActive(false);
 		lifeText.text = _logic.prota.life +"";
-		trapsText.text = _logic.prota.traps +"";
+		trapsText.text = _logic.GetCurrentPlayerTraps() +"";
 		moneyText.gameObject.SetActive (true);
 		timeText.text = ((int)_logic.time) + "";
 		moneyText.text = _logic.GetCurrentPlayerMoney() + " $";

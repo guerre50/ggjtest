@@ -9,20 +9,23 @@ public  class Logic : GameObjectSingleton<Logic> {
 	public enum GameState {PLAYING, WAITING};
 	public GameState gameState = GameState.WAITING;
 	public float startingMoney = 5.0f;
+	public int startingTraps = 5;
 	public float moneyPerSecond = 0.7f;
 
 	// Prices
-	public float trapPrice = 5.0f;
+	public float trapPrice = 1.0f;
 	public float timePrice = 5.0f;
 	public float timeBuyableAmount = 5.0f;
 
 	// Privates
 	private int currentPlayer = 0;
 	private Vector2 money;
+	private Vector2 traps;
 
 	// Use this for initialization
 	void Start () {
 		money = new Vector2 (startingMoney, startingMoney);
+		traps = new Vector2 (startingTraps, startingTraps);
 
 		currentPlayer = 1;
 		Restart();
@@ -65,6 +68,20 @@ public  class Logic : GameObjectSingleton<Logic> {
 
 	public int GetCurrentPlayerMoney() {
 		return (int)money[currentPlayer];
+	}
+
+	public int GetCurrentPlayerTraps() {
+		return (int)traps[currentPlayer];
+	}
+
+	public bool CheckAndPlaceTrap() {
+		if (traps[currentPlayer] > 0) {
+			--traps[currentPlayer];
+
+			return true;
+		}
+
+		return false;
 	}
 
 	public int GetCurrentPlayer() {  // Between 1 and 2 (internally working between 0 and 1)
