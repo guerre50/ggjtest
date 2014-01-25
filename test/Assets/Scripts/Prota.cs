@@ -22,6 +22,9 @@ public class Prota : MonoBehaviour {
 	private bool _tween = false;
 	public Vector2 multipliers;
 	public GameObject grabber;
+	public GameObject grabbObject;
+	public FixedJoint joint;
+
 
 	void Start () {
 		_logic = Logic.instance;
@@ -44,6 +47,7 @@ public class Prota : MonoBehaviour {
 	}
 
 	public void Actions() {
+
 	}
 
 	public void DealDamage() {
@@ -120,6 +124,17 @@ public class Prota : MonoBehaviour {
 	}
 
 	void GrabLogic(Collision col) {
+		if (col.gameObject.tag == "Rock" && (int)col.gameObject.GetComponent<Pushable>().movableIn == (int)Logic.instance.gameMode) {
+			grabber.transform.position = col.contacts[0].point + ((col.contacts[0].point - transform.position)*1.2f);
+			col.gameObject.rigidbody.velocity = Vector3.right;//;(transform.position - col.gameObject.transform.position);
+		}
+	}
+
+	void OnTriggerStay(Collider col) {
+		if (col.gameObject.tag == "Rock" && (int)col.gameObject.GetComponent<Pushable>().movableIn == (int)Logic.instance.gameMode) {
+			grabber.transform.position = col.gameObject.transform.position + ((col.gameObject.transform.position - transform.position)*1.2f);
+			col.gameObject.rigidbody.velocity = (transform.position - col.gameObject.transform.position);
+		}
 	}
 
 	void OnCollisionEnter(Collision col) {
@@ -144,7 +159,6 @@ public class Prota : MonoBehaviour {
 		float scaleX = Mathf.Lerp( 1.0f, 1.3f, Mathf.Abs(col.relativeVelocity.x)/2.0f);
 		float scaleZ = Mathf.Lerp( 0.8f, 1.0f, 2.0f/Mathf.Abs(col.relativeVelocity.z));
 
-		//iTween.Stop(body);
 		transform.localScale = initialScale; 
 		if (!_tween) {
 			_tween = true;
@@ -169,11 +183,13 @@ public class Prota : MonoBehaviour {
 	}
 	
 	void OnCollisionStay(Collision col) {
-		Vector3 inverseNormal = transform.InverseTransformDirection(col.contacts[0].normal);
-		if(col.contacts[0].normal.z >= 0 && Mathf.Abs(inverseNormal.x) <= 0.5f) {
-			onAir = false;
-			if (jumping) {
-				
+		if (col.contacts.Length > 0) {
+			Vector3 inverseNormal = transform.InverseTransformDirection(col.contacts[0].normal);
+			if(col.contacts[0].normal.z >= 0 && Mathf.Abs(inverseNormal.x) <= 0.5f) {
+				onAir = false;
+				if (jumping) {
+					
+				}
 			}
 		}
 
