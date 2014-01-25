@@ -16,7 +16,12 @@ public class Pushable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (IsMovable())
+		if (movableIn == MoveMode.BOTH) {
+			bounceScript.enabled = true;
+			rigidbody.isKinematic = false;
+			graphics.renderer.material.color = new Color(0,0,255);
+		}
+        else if (IsMovable())
         {
             bounceScript.enabled = true;
             rigidbody.isKinematic = false;
