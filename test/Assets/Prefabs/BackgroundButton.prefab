@@ -109,8 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonVisibleIn: 0
-  doors:
-  - {fileID: 0}
+  doors: []
   keyBox: {fileID: 100000, guid: bf8aefc450c298f42bb2cbdbaf71d510, type: 2}
   graphics: {fileID: 100002}
 --- !u!1001 &100100000

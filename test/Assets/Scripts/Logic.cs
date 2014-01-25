@@ -12,8 +12,8 @@ public  class Logic : GameObjectSingleton<Logic> {
 	public enum GameState {PLAYING, WAITING};
 	public GameState gameState = GameState.WAITING;
     public enum GameMode {SIDESCROLL, TOPVIEW};
-    public GameMode gameMode = GameMode.TOPVIEW;
-
+	public GameMode gameMode = GameMode.TOPVIEW;
+	
     private Vector3 sidescrollGravity = new Vector3(0, 0, -20.0f);
     private Vector3 topviewGravity = new Vector3(0, -20.0f, 0);
 
@@ -30,8 +30,17 @@ public  class Logic : GameObjectSingleton<Logic> {
 		initialPosition = prota.gameObject.transform.position;
 		camGUI = GameObject.FindGameObjectWithTag ("MainCamera").GetComponentInChildren<MyGUI> ();
 		menuBackground = GameObject.FindGameObjectWithTag ("MenuBackground");
-		currentPlayer = 1;
-		Stop ();
+
+		//Stop ();
+		time = 0.0f;
+		
+		prota.enabled = false;
+		menuBackground.renderer.material.color = prota.gameObject.renderer.material.color;
+		menuBackground.transform.localScale = new Vector3 (100.0f, 2.0f, 100.0f);
+		menuBackground.transform.position = prota.transform.position;
+		menuBackground.renderer.enabled = true;
+
+		gameState = GameState.WAITING;
 	}
 	
 	// Update is called once per frame
@@ -102,6 +111,12 @@ public  class Logic : GameObjectSingleton<Logic> {
 	public void Restart() {
 		time = roundTime;
 		//prota.transform.position = start.transform.position;
+		if (gameMode == GameMode.SIDESCROLL) {
+			gameMode = GameMode.TOPVIEW;
+		} else {
+			gameMode = GameMode.SIDESCROLL;
+		}
+
 		gameState = GameState.PLAYING;
 		prota.transform.position = initialPosition;
 		prota.enabled = true;
@@ -118,12 +133,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 		menuBackground.transform.localScale = new Vector3 (0.01f, 1.0f, 0.01f);
 		menuBackground.transform.position = prota.transform.position;
 		menuBackground.renderer.enabled = true;
-		
-		if (gameMode == GameMode.SIDESCROLL) {
-			gameMode = GameMode.TOPVIEW;
-		} else {
-			gameMode = GameMode.SIDESCROLL;
-		}
+
 		gameState = GameState.WAITING;
 	}
 	
