@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .658049107, z: -.537732124}
+  m_LocalPosition: {x: 0, y: .0977935791, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -34,18 +34,18 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  lengthInSec: 1
+  lengthInSec: .100000001
   startDelay: 0
   speed: 1
   randomSeed: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 5
+      scalar: 2.83999991
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -205,7 +205,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 1
+      scalar: .0500000007
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -271,18 +271,18 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     gravityModifier: 1
-    inheritVelocity: 0
-    maxNumParticles: 20
+    inheritVelocity: 1
+    maxNumParticles: 5
   ShapeModule:
     serializedVersion: 2
     enabled: 1
-    type: 4
-    radius: .481581211
+    type: 2
+    radius: .349999994
     angle: 0
     length: 5
     boxX: 1
     boxY: 1
-    boxZ: 1
+    boxZ: .104779415
     placementMode: 0
     m_Mesh: {fileID: 0}
     randomDirection: 0
@@ -332,7 +332,7 @@ ParticleSystem:
     time3: 0
     m_BurstCount: 0
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       scalar: 1
       maxCurve:
@@ -344,7 +344,7 @@ ParticleSystem:
           outSlope: 0
           tangentMode: 0
         - time: 1
-          value: 1
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1092,7 +1092,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 475bc94df4412324ba685d792feb87a1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1102,7 +1102,7 @@ ParticleSystemRenderer:
   m_SortingOrder: 0
   m_SortingLayerID: 0
   m_RenderMode: 0
-  m_MaxParticleSize: .100000001
+  m_MaxParticleSize: .0700000003
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2

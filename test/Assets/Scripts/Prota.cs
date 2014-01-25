@@ -18,6 +18,7 @@ public class Prota : MonoBehaviour {
 	public float gravityNum = 9.87f;
 	public GameObject groundParticles;
 	public GameObject groundParticlesPosition;
+	public GameObject body;
 	private Logic _logic;
 
 	void Start () {
@@ -93,19 +94,32 @@ public class Prota : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision col) {
+		GameObject particles = Instantiate(groundParticles, groundParticlesPosition.transform.position, groundParticlesPosition.transform.rotation) as GameObject;
+		ParticleSystem particleSystem = particles.GetComponentInChildren<ParticleSystem>();
+		if (col.transform.renderer) {
+			particleSystem.startColor = col.transform.renderer.material.color;
+		}
+		particleSystem.Emit((int)col.relativeVelocity.magnitude);
+		particles.transform.parent = col.transform;
+		Destroy(particles, 0.5f);
+		float scaleX = Mathf.Lerp( 0.5f, 1.0f, 2.0f/Mathf.Abs(col.relativeVelocity.x));
+		float scaleZ = Mathf.Lerp( 0.5f, 1.0f, 2.0f/Mathf.Abs(col.relativeVelocity.z));
+		//Debug.Log(scaleX + " " + scaleZ);
+		iTween.ScaleFrom(body, iTween.Hash(
+			"value", new Vector3(scaleX, 0.8f, scaleZ), 
+			"time", 0.3f,
+			"onupdate", "OnScale"));
 	}
 
+	public void OnScale() {
+		Vector3 pos = body.transform.localPosition;
+		pos.z = body.transform.localScale.z/2;
+	}
+	
 	void OnCollisionStay(Collision col) {
 		onAir = false;
 		if (jumping) {
-			GameObject particles = Instantiate(groundParticles, groundParticlesPosition.transform.position, groundParticlesPosition.transform.rotation) as GameObject;
-			ParticleSystem particleSystem = particles.GetComponentInChildren<ParticleSystem>();
-			if (col.transform.renderer) {
-				particleSystem.startColor = col.transform.renderer.material.color;
-			}
-			particleSystem.Emit(20);
-			particles.transform.parent = col.transform;
-			Destroy(particles, 0.5f);
+
 		}
 	}
 	
