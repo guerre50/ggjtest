@@ -50,7 +50,7 @@ public class Prota : MonoBehaviour {
 	}
 
 	public void SideScroller() {
-		Vector2 movement = InputController.GetMovement(1);
+		Vector2 movement = InputController.GetMovement(_logic.GetCurrentPlayer());
 		Vector3 velocity = rigidbody.velocity;
 		Vector3 angularVelocity = rigidbody.angularVelocity;
 
@@ -74,7 +74,7 @@ public class Prota : MonoBehaviour {
 		}
 		
 		// jump
-		if (!jumping && InputController.GetKey(InputController.Key.A, 1)) { 
+		if (!jumping && InputController.GetKey(InputController.Key.A, _logic.GetCurrentPlayer())) { 
 			velocity.z = jump;
 			
 			jumping = true;
@@ -98,7 +98,7 @@ public class Prota : MonoBehaviour {
 	}
 
 	public void TopView() {
-		Vector2 mov = InputController.GetMovement(1);
+		Vector2 mov = InputController.GetMovement(_logic.GetCurrentPlayer());
 		if (mov.magnitude != 0) {
 			velocity += accel;
 		} else {

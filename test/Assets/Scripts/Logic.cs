@@ -21,7 +21,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 	// Use this for initialization
 	void Start () {
 		currentPlayer = 1;
-		Restart();
+		//Restart();
 	}
 	
 	// Update is called once per frame
@@ -49,7 +49,6 @@ public  class Logic : GameObjectSingleton<Logic> {
         if (gameMode == Logic.GameMode.TOPVIEW && Physics.gravity != topviewGravity)
         {
             // when top down
-            Debug.Log("Gravity changed to topview");
             Physics.gravity = topviewGravity;
             TopviewMode();
         }
@@ -73,7 +72,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 
 		// World
 		if (time <= 0) {
-			Restart();
+			//Restart();
 		}
 	}
 

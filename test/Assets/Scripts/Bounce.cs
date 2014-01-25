@@ -5,9 +5,14 @@ public class Bounce : MonoBehaviour {
 	private bool _tween = false;
 	private Vector3 initialScale;
 	public GameObject body;
+	public float vel;
 
 	void Start() {
 		  initialScale = transform.localScale;
+	}
+
+	void Update() {
+		//rigidbody.velocity = Vector3.MoveTowards(rigidbody.velocity, Vector3.zero, 0.5f*vel);
 	}
 
 	void OnCollisionEnter(Collision col) {
