@@ -31,7 +31,9 @@ public class Button : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider col) {
-		buttonActive = true;
+		if (col.gameObject.tag == "Rock") {
+			buttonActive = true;
+		}
 	}
 
 	public bool InOwnMode() {
