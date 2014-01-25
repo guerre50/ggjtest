@@ -108,7 +108,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &168376917
 MonoBehaviour:
@@ -127,9 +127,9 @@ MonoBehaviour:
   life: 4
   traps: 5
   trap: {fileID: 100000, guid: 0279f5188d145d44aa3dc629bff779be, type: 2}
-  speed: 7.07999992
+  speed: 10
   airMaxVelocity: 10
-  airFriction: 10
+  airFriction: 20
   airAcceleration: 10
   jump: 10
   gravityNum: 9.86999989
@@ -337,7 +337,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 50f8d135f642b164b9c527c14539aa86, type: 2}
       propertyPath: airFriction
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 50f8d135f642b164b9c527c14539aa86, type: 2}
       propertyPath: airAcceleration
@@ -350,6 +350,14 @@ Prefab:
     - target: {fileID: 11400000, guid: 50f8d135f642b164b9c527c14539aa86, type: 2}
       propertyPath: gravityNum
       value: 9.86999989
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 50f8d135f642b164b9c527c14539aa86, type: 2}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: 50f8d135f642b164b9c527c14539aa86, type: 2}
+      propertyPath: m_Constraints
+      value: 116
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50f8d135f642b164b9c527c14539aa86, type: 2}

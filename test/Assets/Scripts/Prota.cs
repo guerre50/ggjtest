@@ -84,7 +84,7 @@ public class Prota : MonoBehaviour {
 			velocity.z = jump;
 			
 			jumping = true;
-		} else if (jumping && onAir && velocity.z > 0 && !InputController.GetKey(InputController.Key.A, 1)) { 
+		} else if (jumping && onAir) { 
 			// variable jump
 			velocity.z -= airFriction*Time.deltaTime;
 		} 
@@ -102,6 +102,9 @@ public class Prota : MonoBehaviour {
 		
 		mov *= (velocity*Time.deltaTime);
 		transform.Translate(mov.x, 0, mov.y);
+	}
+
+	void OnCollisionEnter(Collision col) {
 	}
 
 	void OnCollisionStay(Collision col) {
