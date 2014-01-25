@@ -31,13 +31,10 @@ public class Button : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider col) {
-		if (InOwnMode()) {
-			buttonActive = true;
-		}
+		buttonActive = true;
 	}
 
 	public bool InOwnMode() {
-		Debug.Log ((floored && (_logic.gameMode == Logic.GameMode.SIDESCROLL)) + " " + (!floored && (_logic.gameMode == Logic.GameMode.TOPVIEW)));
 		return (floored && (_logic.gameMode == Logic.GameMode.SIDESCROLL)) || (!floored && (_logic.gameMode == Logic.GameMode.TOPVIEW));
 	}
 
