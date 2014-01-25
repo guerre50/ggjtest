@@ -20,10 +20,13 @@ public class Button : MonoBehaviour {
 	void FixedUpdate () {
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
-        foreach (Renderer r in renderers)
+        foreach (Renderer rend in renderers)
         {
-            r.enabled = IsVisible();
+            rend.enabled = IsVisible();
         }
+
+        Renderer border = GetComponentInChildren<Renderer>();
+        border.material.color = keyBox.GetComponent<Pushable>().currentColor;
 
         if (buttonActive)
         {
@@ -46,8 +49,13 @@ public class Button : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider col) {
+        Debug.Log("Collided");
+        Debug.Log(col);
+        Debug.Log(keyBox);
         if (col.gameObject == keyBox.gameObject)
         {
+            Debug.Log("Entered");
+            buttonActive = true;
             // draw key to center of button
             // turn color of
         }
@@ -64,5 +72,7 @@ public class Button : MonoBehaviour {
         {
             Gizmos.DrawLine(transform.position, door.transform.position);
         }
+        Gizmos.DrawLine(transform.position, keyBox.transform.position);
+
 	}
 }
