@@ -8,22 +8,91 @@ public class Prota : MonoBehaviour {
 	public int life = 4;
 	public int traps = 5;
 	public GameObject trap;
-
-	private Logic _logic;
+	private bool topView = true;
+	private bool onAir = false;
+	private bool jumping = false;
+	public float speed = 15.0f;
+	public float airMaxVelocity = 10.0f;
+	public float airFriction = 60.0f;
+	public float airAcceleration = 90.0f;
+	public float jump = 20.0f;
+	public float gravityNum = 9.87f;
+	public GameObject groundParticles;
+	public GameObject groundParticlesPosition;
 
 	void Start () {
-		_logic = Logic.instance;
 	}
 
 	void Update () {
-		if (_logic.gameState == Logic.GameState.PLAYING) {
-			UpdateMovement();
-			Actions();
+		UpdateMovement();
+		Actions();
+
+		if (Input.GetKeyDown(KeyCode.Q)){ 
+			topView = !topView;
+			Vector3 gravity = Physics.gravity;
+			if (topView) {
+				gravity.y = -gravityNum;
+				gravity.z = 0;
+			} else {
+				gravity.z = -gravityNum;
+				gravity.y = 0;
+			}
+			Physics.gravity = gravity;
 		}
 	}
 
 	public void UpdateMovement() {
-		Vector2 mov = InputController.GetMovement(_logic.GetCurrentPlayer());
+		if (topView) {
+			TopView();
+		} else {
+			SideScroller();
+		}
+	}
+
+	public void Actions() {
+	}
+
+	public void DealDamage() {
+		life -= 1;
+	}
+
+	public void SideScroller() {
+		Vector2 movement = InputController.GetMovement(1);
+		Vector3 velocity = rigidbody.velocity;
+
+		if (!onAir) {
+			if (movement.x > 0){
+				velocity.x = speed;
+			} else if (movement.x < 0) {
+				velocity.x = -speed;
+			} else{
+				velocity.x =0;
+			}
+			
+			jumping = false;
+		} else {
+			//velocity.x = 0;
+			if (movement.x < 0 && velocity.x > -airMaxVelocity) {
+				velocity.x -= Time.deltaTime*airAcceleration;
+			} else if (movement.x > 0 && velocity.x < airMaxVelocity) {
+				velocity.x += Time.deltaTime*airAcceleration;
+			}
+		}
+		
+		// jump
+		if (!jumping && InputController.GetKey(InputController.Key.A, 1)) { 
+			velocity.z = jump;
+			
+			jumping = true;
+		} else if (jumping && onAir && velocity.z > 0 && !InputController.GetKey(InputController.Key.A, 1)) { 
+			// variable jump
+			velocity.z -= airFriction*Time.deltaTime;
+		} 
+		rigidbody.velocity = velocity;
+	}
+
+	public void TopView() {
+		Vector2 mov = InputController.GetMovement(1);
 		if (mov.magnitude != 0) {
 			velocity += accel;
 		} else {
@@ -35,21 +104,22 @@ public class Prota : MonoBehaviour {
 		transform.Translate(mov.x, 0, mov.y);
 	}
 
-	public void Actions() {
-		if (InputController.GetKeyDown(InputController.Key.A, _logic.GetCurrentPlayer())) {
-			if (_logic.CheckAndPlaceTrap()) {
-				GameObject newTrap = Instantiate(trap, transform.position, transform.rotation) as GameObject;
-				newTrap.GetComponent<Trap>().Player = _logic.GetCurrentPlayer();
+	void OnCollisionStay(Collision col) {
+		onAir = false;
+		if (jumping) {
+			GameObject particles = Instantiate(groundParticles, groundParticlesPosition.transform.position, groundParticlesPosition.transform.rotation) as GameObject;
+			ParticleSystem particleSystem = particles.GetComponentInChildren<ParticleSystem>();
+			if (col.transform.renderer) {
+				particleSystem.startColor = col.transform.renderer.material.color;
 			}
-		}
-
-		if (InputController.GetKeyDown(InputController.Key.Y, _logic.GetCurrentPlayer())) {
-			_logic.CheckAndBuyTime();
+			particleSystem.Emit(20);
+			particles.transform.parent = col.transform;
+			Destroy(particles, 0.5f);
 		}
 	}
-
-	public void DealDamage() {
-		life -= 1;
+	
+	void OnCollisionExit(Collision col) {
+		onAir = true;
 	}
 
 }

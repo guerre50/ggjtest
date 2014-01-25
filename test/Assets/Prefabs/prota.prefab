@@ -20,6 +20,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400002}
+  m_Layer: 0
+  m_Name: groundParticlesPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -29,8 +44,20 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .674660921, y: 0, z: 1.24492109}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 400002}
   m_Father: {fileID: 0}
+--- !u!4 &400002
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: .658049107, z: -.537732124}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400000}
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -67,7 +94,7 @@ Rigidbody:
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 100
+  m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -97,11 +124,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2081a76090a8a254294488cacac78493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 10
+  maxVelocity: 5
   accel: .5
   life: 4
   traps: 5
   trap: {fileID: 100000, guid: 0279f5188d145d44aa3dc629bff779be, type: 2}
+  speed: 7.07999992
+  airMaxVelocity: 183.600006
+  airFriction: 96.0999985
+  airAcceleration: 259.299988
+  jump: 15.71
+  gravityNum: 21.3199997
+  groundParticles: {fileID: 100000, guid: 200c008bd50f2a443b339480ad2333c2, type: 2}
+  groundParticlesPosition: {fileID: 100002}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
