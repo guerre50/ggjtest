@@ -121,8 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPressableIn: 0
-  doors:
-  - {fileID: 0}
+  doors: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
