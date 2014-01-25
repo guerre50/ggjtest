@@ -38,7 +38,7 @@ public class GUI : MonoBehaviour {
 		lifeText.text = _logic.prota.life +"";
 		trapsText.text = _logic.prota.traps +"";
 		moneyText.gameObject.SetActive (true);
-		timeText.text = ((int)_logic.time) + "";
+		timeText.text = _logic.time.ToString("F1") + "";
 		moneyText.text = _logic.GetCurrentPlayerMoney() + " $";
 	}
 }
