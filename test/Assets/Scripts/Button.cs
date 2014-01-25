@@ -37,10 +37,8 @@ public class Button : MonoBehaviour {
 	void OnTriggerStay (Collider col) {
         // check if button is pressable in this mode
 		//if(InOwnMode()) {
-		Debug.Log("Hej");
             if (col.gameObject.tag == "Rock") {
 			    buttonActive = true;
-			Debug.Log("da");
 		    }
 		//}
 	}
