@@ -326,8 +326,8 @@ MonoBehaviour:
   sensitivityDepth: 1.95000005
   sensitivityNormals: 1
   lumThreshhold: .200000003
-  edgeExp: .850000024
-  sampleDist: 1.33000004
+  edgeExp: 1.39999998
+  sampleDist: .219999999
   edgesOnly: 0
   edgesOnlyBgColor: {r: 1, g: 1, b: 1, a: 1}
   edgeDetectShader: {fileID: 4800000, guid: 0d1644bdf064147baa97f235fc5b4903, type: 3}
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  intensity: -.600000024
+  intensity: -2.8599999
   chromaticAberration: 0
   axialAberration: .5
   blur: 0
