@@ -21,6 +21,7 @@ public class Prota : MonoBehaviour {
 	private Logic _logic;
 	private bool _tween = false;
 	public Vector2 multipliers;
+	public GameObject grabber;
 
 	void Start () {
 		_logic = Logic.instance;
@@ -118,7 +119,12 @@ public class Prota : MonoBehaviour {
 
 	}
 
+	void GrabLogic(Collision col) {
+	}
+
 	void OnCollisionEnter(Collision col) {
+		GrabLogic(col);
+
 
 		if (_logic.gameMode == Logic.GameMode.SIDESCROLL) {
 			Vector3 particlesPosition = col.contacts[0].point;
