@@ -75,7 +75,9 @@ public  class Logic : GameObjectSingleton<Logic> {
             Physics.gravity = sidescrollGravity;
             SidescrollMode();
         }
-            
+
+		if (InputController.GetKeyDown (InputController.Key.Back))
+			Application.LoadLevel (Application.loadedLevel);
 	}
 
 	private void WaitingState() {
