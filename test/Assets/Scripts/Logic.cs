@@ -3,7 +3,7 @@ using System.Collections;
 
 public  class Logic : GameObjectSingleton<Logic> {
 	public GameObject start;
-	public float roundTime = 30.0f;
+	public float roundTime = 10.0f;
 	public float time;
 	private Prota prota;
 
@@ -23,6 +23,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 	public GameObject menuBackground;
 
 	private float menuAnimationTime = 1.0f;
+	private float animatedTime = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -70,9 +71,9 @@ public  class Logic : GameObjectSingleton<Logic> {
 	}
 
 	private void WaitingState() {
-		time -= Time.deltaTime;
+		animatedTime -= Time.deltaTime;
 
-		if (time > 0.0f) {
+		if (animatedTime > 0.0f) {
 			menuBackground.transform.localScale = new Vector3(menuBackground.transform.localScale.x*(2.0f - menuAnimationTime/10.0f), 2.0f, menuBackground.transform.localScale.z*(2.0f - menuAnimationTime/10.0f));
 			menuBackground.transform.position = prota.transform.position;
 		}
@@ -87,6 +88,11 @@ public  class Logic : GameObjectSingleton<Logic> {
 	private void PlayingState() {
 		time -= Time.deltaTime;
 
+		if (time > 0.0f) {
+			menuBackground.transform.localScale = new Vector3 (menuBackground.transform.localScale.x * ( menuAnimationTime / 10.0f + 0.4f), 2.0f, menuBackground.transform.localScale.z * ( menuAnimationTime / 10.0f + 0.4f));
+			menuBackground.transform.position = prota.transform.position;
+		}
+
 		if (InputController.GetKeyDown(InputController.Key.Start, 0)) //Change players
 		{
 			Stop();
@@ -94,7 +100,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 
 		// World
 		if (time <= 0) {
-			//Restart();
+			Stop();
 		}
 	}
 
@@ -109,7 +115,7 @@ public  class Logic : GameObjectSingleton<Logic> {
     }
 
 	public void Restart() {
-		time = roundTime;
+		time += roundTime;
 		//prota.transform.position = start.transform.position;
 		if (gameMode == GameMode.SIDESCROLL) {
 			gameMode = GameMode.TOPVIEW;
@@ -118,15 +124,15 @@ public  class Logic : GameObjectSingleton<Logic> {
 		}
 
 		gameState = GameState.PLAYING;
-		prota.transform.position = initialPosition;
+		//prota.transform.position = initialPosition;
 		prota.enabled = true;
-		menuBackground.renderer.enabled = false;
+		//menuBackground.renderer.enabled = false;
 		camGUI.SetState(gameState);
 	}
 
 	public void Stop() {
 		currentPlayer = (currentPlayer + 1)%2;
-		time = menuAnimationTime;
+		animatedTime = menuAnimationTime;
 		
 		prota.enabled = false;
 		menuBackground.renderer.material.color = prota.gameObject.renderer.material.color;
