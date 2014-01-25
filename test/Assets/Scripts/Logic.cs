@@ -74,12 +74,13 @@ public  class Logic : GameObjectSingleton<Logic> {
 		animatedTime -= Time.deltaTime;
 
 		if (animatedTime > 0.0f) {
-			menuBackground.transform.localScale = new Vector3(menuBackground.transform.localScale.x*(2.0f - menuAnimationTime/10.0f), 2.0f, menuBackground.transform.localScale.z*(2.0f - menuAnimationTime/10.0f));
+			if (menuBackground.transform.localScale.magnitude < 150.0f)
+				menuBackground.transform.localScale = new Vector3(menuBackground.transform.localScale.x*(2.0f - menuAnimationTime/10.0f), 2.0f, menuBackground.transform.localScale.z*(2.0f - menuAnimationTime/10.0f));
 			menuBackground.transform.position = prota.transform.position;
 		}
 		else {
 			camGUI.SetState(gameState);
-			if (InputController.GetKeyDown (InputController.Key.A, currentPlayer)) {
+			if (InputController.GetKeyDown (InputController.Key.A, GetCurrentPlayer())) {
 				Restart ();
 			}
 		}
@@ -93,7 +94,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 			menuBackground.transform.position = prota.transform.position;
 		}
 
-		if (InputController.GetKeyDown(InputController.Key.Start, 0)) //Change players
+		if (InputController.GetKeyDown(InputController.Key.Start, GetCurrentPlayer())) //Change players
 		{
 			Stop();
 		}
