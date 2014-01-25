@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Button : MonoBehaviour {
 
-    public Logic.GameMode buttonPressableIn;
+    public Logic.GameMode buttonVisibleIn;
 	public GameObject[] doors;
+    public GameObject keyBox;
 
 	private bool buttonActive = false;
 	private bool wasActive = false;
@@ -13,9 +14,12 @@ public class Button : MonoBehaviour {
 
 	void Start() {
 		_logic = Logic.instance;
+        renderer.material.color = keyBox.renderer.material.color;
 	}
 
 	void FixedUpdate () {
+        renderer.enabled = IsVisible();
+
         if (buttonActive)
         {
             if (!wasActive) NotifyDoors(true);
@@ -30,8 +34,10 @@ public class Button : MonoBehaviour {
 	}
 
 	void NotifyDoors (bool open) {
-		foreach (GameObject door in doors)
-			door.SendMessage("SetState", open);
+        foreach (GameObject door in doors)
+        {
+            door.SendMessage("SetState", open);
+        }
 	}
 
 	void OnTriggerStay (Collider col) {
@@ -41,16 +47,23 @@ public class Button : MonoBehaviour {
 			    buttonActive = true;
 		    }
 		//}
+        if (col.gameObject == keyBox.gameObject)
+        {
+            // draw key to center of button
+            // turn color of
+        }
 	}
 
-    public bool InOwnMode()
+    public bool IsVisible()
     {
-        return buttonPressableIn == _logic.gameMode;
+        return buttonVisibleIn == _logic.gameMode;
     }
 
 	void OnDrawGizmos() {
 		Gizmos.color = Color.green;
-		foreach (GameObject door in doors)
-			Gizmos.DrawLine (transform.position, door.transform.position);
+        foreach (GameObject door in doors)
+        {
+            Gizmos.DrawLine(transform.position, door.transform.position);
+        }
 	}
 }
