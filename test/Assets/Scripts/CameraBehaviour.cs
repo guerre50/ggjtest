@@ -23,12 +23,12 @@ public class CameraBehaviour : MonoBehaviour {
 			targetPosition.x = prota.transform.position.x;
 			targetPosition.z = prota.transform.position.z;
 			
-			iTween.MoveUpdate(gameObject, targetPosition, 1f);
+			iTween.MoveUpdate(gameObject, targetPosition, 2f);
 			if (Vector3.Distance(transform.position, targetPosition) < 0.5f) moveToTarget = false;
 		}
 	}
 
 	void OnDrawGizmos() {
-		Gizmos.DrawCube (limits.center, limits.extents);
+		//Gizmos.DrawCube (limits.center, limits.extents);
 	}
 }
