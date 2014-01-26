@@ -47,7 +47,7 @@ public class Pushable : MonoBehaviour {
             }
             else
             {
-                graphics.renderer.material.color = Color.Lerp(initialColor, _color.color, 0.5f);
+                graphics.renderer.material.color = Color.Lerp(initialColor, _color.color, 0.9f);
             }
 
             currentColor = _logic.KEYBOXSIDE;
@@ -60,7 +60,7 @@ public class Pushable : MonoBehaviour {
             }
             else
             {
-				graphics.renderer.material.color = Color.Lerp(initialColor, _color.color, 0.5f);
+				graphics.renderer.material.color = Color.Lerp(initialColor, _color.color, 0.9f);
             }
             currentColor = _logic.KEYBOXTOP;
         }
