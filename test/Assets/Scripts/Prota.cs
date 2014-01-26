@@ -153,7 +153,7 @@ public class Prota : MonoBehaviour {
 		transform.rigidbody.velocity = Vector3.MoveTowards (transform.rigidbody.velocity, new Vector3(mov.x, 0, mov.y), 0.7f);
 
 		if (transform.rigidbody.velocity.magnitude > 2 && Random.Range (0.0f, 1.0f) > 0.6f) {
-			particles.EmitAt (transform.position + (transform.position - transform.rigidbody.velocity).normalized*0.7f);
+			//particles.EmitAt (transform.position + (transform.position - transform.rigidbody.velocity).normalized*0.7f);
 		}
 	}
 
