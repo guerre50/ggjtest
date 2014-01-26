@@ -7,7 +7,7 @@ public class Sun : MonoBehaviour {
 
 	public void Start() {
 		iTween.MoveTo (gameObject, iTween.Hash(
-			"position", transform.position + transform.forward*3.0f,
+			"position", transform.position + transform.up*0.3f,
 			"time", 3.0f,
 			"looptype", iTween.LoopType.pingPong
 			));
