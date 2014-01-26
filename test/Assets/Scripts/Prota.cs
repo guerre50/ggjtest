@@ -25,8 +25,11 @@ public class Prota : MonoBehaviour {
 	public GameObject grabbObject;
 	public FixedJoint joint;
 
+    private SoundManager _soundManager;
+
 
 	void Start () {
+        _soundManager = SoundManager.instance;
 		_logic = Logic.instance;
 		initialScale = transform.localScale;
 		Physics.maxAngularVelocity = speed;
@@ -80,7 +83,10 @@ public class Prota : MonoBehaviour {
 		}
 		
 		// jump
-		if (!jumping && InputController.GetKey(InputController.Key.A, _logic.GetCurrentPlayer())) { 
+		if (!jumping && InputController.GetKey(InputController.Key.A, _logic.GetCurrentPlayer())) {
+
+            _soundManager.Play("jump", transform.position);
+
 			velocity.z = jump;
 			
 			jumping = true;
