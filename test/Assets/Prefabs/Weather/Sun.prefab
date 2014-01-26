@@ -46,6 +46,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400004}
   - 111: {fileID: 11100002}
+  - 114: {fileID: 11400000}
   m_Layer: 11
   m_Name: Sun
   m_TagString: Untagged
@@ -82,8 +83,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: .691680372, y: 0, z: 0, w: .722203851}
-  m_LocalPosition: {x: 16.7434139, y: 17.7680969, z: .172076464}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.60227275, y: -2.73298907, z: 4.11076641}
+  m_LocalScale: {x: .125783265, y: .125783265, z: .125783265}
   m_Children:
   - {fileID: 400002}
   - {fileID: 400000}
@@ -176,7 +177,7 @@ Animation:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 4871a0ca0291e3c4d9c587990858f0d2, type: 2}
   m_Animations:
@@ -192,7 +193,7 @@ Animation:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: a092933be022dd542a6741cf4cb59633, type: 2}
   m_Animations:
@@ -202,6 +203,19 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9587b1f0f9105d428b014c58dfe6a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  innerSun: {fileID: 100002}
+  outerSun: {fileID: 100000}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
