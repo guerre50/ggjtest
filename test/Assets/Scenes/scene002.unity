@@ -125,6 +125,10 @@ MonoBehaviour:
   movableIn: 0
   graphics: {fileID: 79057757}
   currentColor: {r: 255, g: 255, b: 255, a: 1}
+  KEYBOXBOTH: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXTOP: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXSIDE: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXNEUTRAL: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &7706225
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -303,6 +307,10 @@ Prefab:
     - target: {fileID: 400000, guid: 5c3a0e0160489894c81fd95244af85fd, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5c3a0e0160489894c81fd95244af85fd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c3a0e0160489894c81fd95244af85fd, type: 2}
@@ -2647,8 +2655,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
   m_PrefabInternal: {fileID: 1256056036}
   m_GameObject: {fileID: 190007692}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 7.51972008, y: .409230262, z: -.855233669}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.51972008, y: .409230262, z: -1.52528334}
   m_LocalScale: {x: .699999988, y: .400000006, z: .699999988}
   m_Children:
   - {fileID: 1572913859}
@@ -2666,7 +2674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49834bad23ad60f438ecd9aa3ef2c0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonVisibleIn: 0
+  buttonVisibleIn: 1
   doors:
   - {fileID: 729484597}
   - {fileID: 501752298}
@@ -6814,7 +6822,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d36e2fe1afded5749bdaa162a5eab311, type: 2}
       propertyPath: m_LocalScale.x
-      value: .350789338
+      value: .648438752
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d36e2fe1afded5749bdaa162a5eab311, type: 2}
       propertyPath: m_LocalScale.y
@@ -8774,6 +8782,10 @@ MonoBehaviour:
   movableIn: 0
   graphics: {fileID: 538342498}
   currentColor: {r: 255, g: 255, b: 255, a: 1}
+  KEYBOXBOTH: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXTOP: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXSIDE: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXNEUTRAL: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &847195907
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11517,7 +11529,7 @@ Transform:
   m_GameObject: {fileID: 1118928739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.5707607, y: -3.12598419, z: -7.64411449}
-  m_LocalScale: {x: .350789338, y: .574725807, z: .940288723}
+  m_LocalScale: {x: .648438752, y: .574725807, z: .940288723}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1126341752
@@ -12307,7 +12319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1228303664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12344,11 +12356,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 1}
   colors:
-  - {r: .298039228, g: 1, b: .811764717, a: 1}
-  - {r: .752941191, g: .909803927, b: .266666681, a: 1}
-  - {r: 1, g: .662745118, b: .168627456, a: 1}
-  - {r: .909803927, g: .258823544, b: .4627451, a: 1}
-  - {r: .349019617, g: .290196091, b: 1, a: 1}
+  - {r: .345098048, g: .909803927, b: 1, a: 1}
+  - {r: .270588249, g: .909803927, b: .494117647, a: 1}
+  - {r: .729411781, g: 1, b: .392156869, a: 1}
+  - {r: .909803927, g: .815686285, b: .313725501, a: 1}
+  - {r: 1, g: .717647076, b: .372549027, a: 1}
 --- !u!114 &1228303666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12723,11 +12735,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -.855233669
+      value: -1.52528334
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.707106829
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.y
@@ -12739,7 +12751,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707106829
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: doors.Array.data[0]
@@ -12757,6 +12769,10 @@ Prefab:
       propertyPath: keyBox
       value: 
       objectReference: {fileID: 7706222}
+    - target: {fileID: 11400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
+      propertyPath: buttonVisibleIn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
   m_RootGameObject: {fileID: 190007692}
@@ -13757,7 +13773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1422614203
 Transform:
   m_ObjectHideFlags: 0
@@ -14639,6 +14655,10 @@ MonoBehaviour:
   movableIn: 1
   graphics: {fileID: 1449805132}
   currentColor: {r: 255, g: 255, b: 255, a: 1}
+  KEYBOXBOTH: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXTOP: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXSIDE: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXNEUTRAL: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &1554253572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17942,7 +17962,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.707106829
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.y
@@ -17954,7 +17974,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707106829
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: doors.Array.data[0]
@@ -17968,6 +17988,10 @@ Prefab:
       propertyPath: keyBox
       value: 
       objectReference: {fileID: 847195904}
+    - target: {fileID: 11400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
+      propertyPath: buttonVisibleIn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
   m_RootGameObject: {fileID: 1801078863}
@@ -19313,7 +19337,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
   m_PrefabInternal: {fileID: 1733856058}
   m_GameObject: {fileID: 1801078863}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.6523266, y: .409230262, z: -1.25332785}
   m_LocalScale: {x: .699999988, y: .400000006, z: .699999988}
   m_Children:
@@ -19332,7 +19356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49834bad23ad60f438ecd9aa3ef2c0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonVisibleIn: 0
+  buttonVisibleIn: 1
   doors:
   - {fileID: 404954999}
   keyBox: {fileID: 847195904}

@@ -7,16 +7,31 @@ public class Pushable : MonoBehaviour {
     private Logic _logic;
     private Bounce bounceScript;
 	public GameObject graphics;
-    public Color currentColor = new Color(255,255,255);
+    public Color currentColor;
 	private ColorControl _color;
 	private Color initialColor;
 
+	
+	public Color KEYBOXBOTH;
+	public Color KEYBOXTOP;
+	public Color KEYBOXSIDE;
+	
+	public Color KEYBOXNEUTRAL;
+	
 	// Use this for initialization
 	void Start () {
+		KEYBOXBOTH = new Color(255.0f/255.0f,58.0f/255.0f,245.0f/255.0f);
+		KEYBOXTOP = new Color(232.0f/255.0f,58.0f/255.0f,31.0f/255.0f);
+		KEYBOXSIDE = new Color(90.0f/255.0f, 41.0f/255.0f, 232.0f/255.0f);
+		KEYBOXNEUTRAL = new Color(255.0f/255.0f,255.0f/255.0f,255.0f/255.0f);
+
+
 		initialColor = renderer.material.color;
         _logic = Logic.instance;
 		_color = ColorControl.instance;
         bounceScript = GetComponent<Bounce>();
+		currentColor = (movableIn == MoveMode.SIDESCROLL)? KEYBOXSIDE : ((movableIn == MoveMode.TOPVIEW)? KEYBOXTOP : KEYBOXBOTH);
+		graphics = transform.GetChild (0).gameObject;
 	}
 	
 	// Update is called once per frame
@@ -43,31 +58,31 @@ public class Pushable : MonoBehaviour {
         {
             if (_logic.gameMode == Logic.GameMode.SIDESCROLL)
             {
-                graphics.renderer.material.color = _logic.KEYBOXSIDE;
+                graphics.renderer.material.color = KEYBOXSIDE;
             }
             else
             {
-                graphics.renderer.material.color = Color.Lerp(initialColor, _color.color, 0.5f);
+                graphics.renderer.material.color = Color.Lerp(initialColor, _color.color, 0.9f);
             }
 
-            currentColor = _logic.KEYBOXSIDE;
+            //currentColor = _logic.KEYBOXSIDE;
         }
         else if (movableIn == MoveMode.TOPVIEW)
         {
             if (_logic.gameMode == Logic.GameMode.TOPVIEW)
             {
-                graphics.renderer.material.color = _logic.KEYBOXTOP;
+                graphics.renderer.material.color = KEYBOXTOP;
             }
             else
             {
-				graphics.renderer.material.color = Color.Lerp(initialColor, _color.color, 0.5f);
+				graphics.renderer.material.color = Color.Lerp(initialColor, _color.color, 0.9f);
             }
-            currentColor = _logic.KEYBOXTOP;
+            //currentColor = _logic.KEYBOXTOP;
         }
         else
         {
-            graphics.renderer.material.color = _logic.KEYBOXBOTH;
-            currentColor = _logic.KEYBOXBOTH;
+            graphics.renderer.material.color = KEYBOXBOTH;
+            //currentColor = _logic.KEYBOXBOTH;
         }
         
 	}
