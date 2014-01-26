@@ -41,13 +41,14 @@ MonoBehaviour:
   start: {fileID: 0}
   roundTime: 15
   time: 15
-  prota: {fileID: 0}
   gameState: 1
-  startingMoney: 5
-  moneyPerSecond: .699999988
-  trapPrice: 5
-  timePrice: 5
-  timeBuyableAmount: 5
+  gameMode: 1
+  KEYBOXBOTH: {r: 255, g: 0, b: 255, a: 1}
+  KEYBOXTOP: {r: 255, g: 255, b: 0, a: 1}
+  KEYBOXSIDE: {r: 0, g: .497904003, b: .352569908, a: 1}
+  KEYBOXNEUTRAL: {r: 255, g: 255, b: 255, a: 1}
+  menuBackground: {fileID: 0}
+  menuBackgroundHole: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
