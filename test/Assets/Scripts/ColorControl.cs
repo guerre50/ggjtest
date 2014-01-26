@@ -4,23 +4,22 @@ using System.Collections;
 public class ColorControl : GameObjectSingleton<ColorControl> {
 
 	private Music music;
-	private float bpm = 60.0f;
-	private float colorChange = 20.0f;
+	private float bpm = 30.0f;
 	public Color color;
+	public Color[] colors;
 
 	private float secondsBetweenBeats;
 	private float lastBeat = 0.0f;
 	private Color nextColor;
-
-	private Vector3 colorVelocity;
-	private Vector3 colorAcc;
+	private Color originalColor;
 
 	// Use this for initialization
 	void Start () {
 		color = Color.gray;
+		originalColor = color;
 		nextColor = Color.gray;
 		music = transform.gameObject.GetComponent<Music> ();
-		secondsBetweenBeats = bpm / 60.0f;
+		secondsBetweenBeats = 60.0f / bpm;
 	}
 	
 	// Update is called once per frame
@@ -30,17 +29,12 @@ public class ColorControl : GameObjectSingleton<ColorControl> {
 			ChangeColor();
 			lastBeat = music.audio.time;
 		}
-
-
-		color = new Color(color.r +  colorVelocity.x * Time.deltaTime,
-							color.g + colorVelocity.y * Time.deltaTime,
-		                    color.b + colorVelocity.z * Time.deltaTime);
-		colorVelocity += colorAcc * Time.deltaTime;
-		colorAcc = Vector3.Lerp( colorAcc, new Vector3 (0.0f, 0.0f, 0.0f), Time.deltaTime);
-		//Debug.Log (colorAcc);
+		else color = Color.Lerp (originalColor, nextColor, deltaTime * 2.0f / secondsBetweenBeats);
 	}
 
 	void ChangeColor() {
-		colorAcc = new Vector3 (Random.Range (-colorChange, colorChange), Random.Range (-colorChange, colorChange), Random.Range (-colorChange, colorChange));
+		int i = Random.Range (0, colors.Length);
+		nextColor = colors [i];
+		originalColor = color;
 	}
 }
