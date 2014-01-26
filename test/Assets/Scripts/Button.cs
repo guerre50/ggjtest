@@ -35,7 +35,7 @@ public class Button : MonoBehaviour {
         {
             if (!wasActive) {
 				NotifyDoors(true);
-				_sound.Play ("denied", transform.position);
+				_sound.Play ("high_bleep", transform.position);
 			}
         }
         else

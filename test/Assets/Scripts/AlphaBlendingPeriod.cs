@@ -13,6 +13,6 @@ public class AlphaBlendingPeriod : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		Color c = renderer.material.color;
-		renderer.material.color = new Color (c.r, c.g, c.b, (Mathf.Sin (Time.time / period) + 1.0f)/2.0f);
+		renderer.material.color = new Color (c.r, c.g, c.b, (Mathf.Sin (Time.time / period) + 1.0f)/2.2f + 0.2f);
 	}
 }
