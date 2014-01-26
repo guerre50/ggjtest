@@ -43,7 +43,7 @@ public class CameraBehaviour : MonoBehaviour {
 				targetPosition.z = prota.transform.position.z;
 			}
 
-			iTween.MoveUpdate(gameObject, targetPosition, 2f);
+			iTween.MoveUpdate(gameObject, targetPosition, Mathf.Max (2.0f, Vector3.Distance(transform.position, targetPosition)/10));
 			if (Vector3.Distance(transform.position, targetPosition) < 0.5f) moveToTarget = false;
 		}
 	}
