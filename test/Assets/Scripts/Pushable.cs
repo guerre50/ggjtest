@@ -8,10 +8,14 @@ public class Pushable : MonoBehaviour {
     private Bounce bounceScript;
 	public GameObject graphics;
     public Color currentColor = new Color(255,255,255);
+	private ColorControl _color;
+	private Color initialColor;
 
 	// Use this for initialization
 	void Start () {
+		initialColor = renderer.material.color;
         _logic = Logic.instance;
+		_color = ColorControl.instance;
         bounceScript = GetComponent<Bounce>();
 	}
 	
@@ -36,7 +40,7 @@ public class Pushable : MonoBehaviour {
             }
             else
             {
-                graphics.renderer.material.color = _logic.KEYBOXNEUTRAL;
+                graphics.renderer.material.color = Color.Lerp(initialColor, _color.color, 0.5f);
             }
 
             currentColor = _logic.KEYBOXSIDE;
@@ -49,7 +53,7 @@ public class Pushable : MonoBehaviour {
             }
             else
             {
-                graphics.renderer.material.color = _logic.KEYBOXNEUTRAL;
+				graphics.renderer.material.color = Color.Lerp(initialColor, _color.color, 0.5f);
             }
             currentColor = _logic.KEYBOXTOP;
         }
