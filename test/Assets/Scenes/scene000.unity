@@ -4874,7 +4874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &815204599
 Transform:
   m_ObjectHideFlags: 0
@@ -8762,6 +8762,10 @@ MonoBehaviour:
   movableIn: 2
   graphics: {fileID: 1767085025}
   currentColor: {r: 255, g: 255, b: 255, a: 1}
+  KEYBOXBOTH: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXTOP: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXSIDE: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXNEUTRAL: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &1403377588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11495,6 +11499,10 @@ MonoBehaviour:
   movableIn: 1
   graphics: {fileID: 639403017}
   currentColor: {r: 255, g: 255, b: 255, a: 1}
+  KEYBOXBOTH: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXTOP: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXSIDE: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXNEUTRAL: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &1806424719
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13295,7 +13303,7 @@ TrailRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 2a0ca78f7aaf0d146b98feb9b8a6ef8f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -13373,6 +13381,10 @@ MonoBehaviour:
   movableIn: 0
   graphics: {fileID: 734482205}
   currentColor: {r: 255, g: 255, b: 255, a: 1}
+  KEYBOXBOTH: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXTOP: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXSIDE: {r: 0, g: 0, b: 0, a: 0}
+  KEYBOXNEUTRAL: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &2035775373
 Rigidbody:
   m_ObjectHideFlags: 0

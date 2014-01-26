@@ -20,9 +20,9 @@ public class Pushable : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		KEYBOXBOTH = new Color(252.0f/255.0f,121.0f/255.0f,255.0f/255.0f);
-		KEYBOXTOP = new Color(232.0f/255.0f,100.0f/255.0f,88.0f/255.0f);
-		KEYBOXSIDE = new Color(132.0f/255.0f, 99.0f/255.0f, 232.0f/255.0f);
+		KEYBOXBOTH = new Color(255.0f/255.0f,58.0f/255.0f,245.0f/255.0f);
+		KEYBOXTOP = new Color(232.0f/255.0f,58.0f/255.0f,31.0f/255.0f);
+		KEYBOXSIDE = new Color(90.0f/255.0f, 41.0f/255.0f, 232.0f/255.0f);
 		KEYBOXNEUTRAL = new Color(255.0f/255.0f,255.0f/255.0f,255.0f/255.0f);
 
 

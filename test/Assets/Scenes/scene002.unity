@@ -2655,8 +2655,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
   m_PrefabInternal: {fileID: 1256056036}
   m_GameObject: {fileID: 190007692}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 7.51972008, y: .409230262, z: -.855233669}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.51972008, y: .409230262, z: -1.52528334}
   m_LocalScale: {x: .699999988, y: .400000006, z: .699999988}
   m_Children:
   - {fileID: 1572913859}
@@ -2674,7 +2674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49834bad23ad60f438ecd9aa3ef2c0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonVisibleIn: 0
+  buttonVisibleIn: 1
   doors:
   - {fileID: 729484597}
   - {fileID: 501752298}
@@ -6822,7 +6822,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d36e2fe1afded5749bdaa162a5eab311, type: 2}
       propertyPath: m_LocalScale.x
-      value: .350789338
+      value: .648438752
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d36e2fe1afded5749bdaa162a5eab311, type: 2}
       propertyPath: m_LocalScale.y
@@ -11529,7 +11529,7 @@ Transform:
   m_GameObject: {fileID: 1118928739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.5707607, y: -3.12598419, z: -7.64411449}
-  m_LocalScale: {x: .350789338, y: .574725807, z: .940288723}
+  m_LocalScale: {x: .648438752, y: .574725807, z: .940288723}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1126341752
@@ -12735,11 +12735,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -.855233669
+      value: -1.52528334
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.707106829
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.y
@@ -12751,7 +12751,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707106829
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: doors.Array.data[0]
@@ -12769,6 +12769,10 @@ Prefab:
       propertyPath: keyBox
       value: 
       objectReference: {fileID: 7706222}
+    - target: {fileID: 11400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
+      propertyPath: buttonVisibleIn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
   m_RootGameObject: {fileID: 190007692}
@@ -13769,7 +13773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1422614203
 Transform:
   m_ObjectHideFlags: 0
@@ -17958,7 +17962,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.707106829
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.y
@@ -17970,7 +17974,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707106829
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
       propertyPath: doors.Array.data[0]
@@ -17984,6 +17988,10 @@ Prefab:
       propertyPath: keyBox
       value: 
       objectReference: {fileID: 847195904}
+    - target: {fileID: 11400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
+      propertyPath: buttonVisibleIn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
   m_RootGameObject: {fileID: 1801078863}
@@ -19329,7 +19337,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: cb2bb400072db1746bc98ff92649c9fd, type: 2}
   m_PrefabInternal: {fileID: 1733856058}
   m_GameObject: {fileID: 1801078863}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.6523266, y: .409230262, z: -1.25332785}
   m_LocalScale: {x: .699999988, y: .400000006, z: .699999988}
   m_Children:
@@ -19348,7 +19356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49834bad23ad60f438ecd9aa3ef2c0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonVisibleIn: 0
+  buttonVisibleIn: 1
   doors:
   - {fileID: 404954999}
   keyBox: {fileID: 847195904}
