@@ -174,7 +174,7 @@ public class Prota : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 		GrabLogic(col);
 		Vector3 particlesPosition = col.contacts[0].point;
-		particlesPosition.y = groundParticlesPosition.transform.position.y;
+		particlesPosition.y = 15;
 
 		GameObject particles = Instantiate(groundParticles, particlesPosition, groundParticlesPosition.transform.rotation) as GameObject;
 		ParticleSystem particleSystem = particles.GetComponentInChildren<ParticleSystem>();
