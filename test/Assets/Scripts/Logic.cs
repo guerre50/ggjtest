@@ -111,8 +111,9 @@ public  class Logic : GameObjectSingleton<Logic> {
 				"time", menuAnimationTime));
 			iTween.ShakePosition(Camera.main.gameObject, new Vector3(0.1f, 0.0f, 0.1f), 1.0f);
 			if (gameMode == GameMode.TOPVIEW) {
-				iTween.ScaleTo (prota.body, new Vector3(2f, 2f, 2f), 0.3f);
-				_.Wait(0.3f).Done (()=> { iTween.ScaleTo (prota.body, new Vector3(1f, 1f, 1f), 0.3f); });
+				iTween.ScaleTo (prota.body, new Vector3(4f, 4f, 4f), 0.3f);
+				_.Wait(0.3f).Done (()=> { iTween.ScaleTo (prota.body, new Vector3(1f, 1f, 1f), 0.3f); prota.particles.Emit();});
+
 			}
 		}
 		if (time > 0.0f) {

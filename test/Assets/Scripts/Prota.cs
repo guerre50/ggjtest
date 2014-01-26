@@ -24,6 +24,7 @@ public class Prota : MonoBehaviour {
 	public GameObject grabber;
 	public GameObject grabbObject;
 	public FixedJoint joint;
+	public ProtaParticles particles;
 
     private SoundManager _soundManager;
 
@@ -150,6 +151,10 @@ public class Prota : MonoBehaviour {
 		mov *= (velocity*multiplier*Time.deltaTime);
 		mov = Vector3.ClampMagnitude(mov, maxVelocity);
 		transform.rigidbody.velocity = Vector3.MoveTowards (transform.rigidbody.velocity, new Vector3(mov.x, 0, mov.y), 0.7f);
+
+		if (transform.rigidbody.velocity.magnitude > 4 && Random.Range (0.0f, 1.0f) > 0.6f) {
+			particles.EmitAt (transform.position + (transform.position - transform.rigidbody.velocity).normalized*0.3f);
+		}
 	}
 
 	void GrabLogic(Collision col) {
