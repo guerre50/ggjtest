@@ -157,6 +157,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 
 		gameState = GameState.PLAYING;
 		prota.enabled = true;
+		prota.rigidbody.isKinematic = false;
 		camGUI.SetState(gameState);
 	}
 
@@ -165,6 +166,7 @@ public  class Logic : GameObjectSingleton<Logic> {
 		animatedTime = menuAnimationTime;
 		
 		prota.enabled = false;
+		prota.rigidbody.isKinematic = true;
 		menuBackground.renderer.material.color = prota.gameObject.renderer.material.color;
 		menuBackground.transform.position = prota.transform.position;
 		menuBackground.renderer.enabled = true;

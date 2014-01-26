@@ -74,6 +74,6 @@ public class Pushable : MonoBehaviour {
 
     bool IsMovable()
     {
-        return (movableIn == (MoveMode)_logic.gameMode) || (movableIn == MoveMode.BOTH);
+        return (_logic.gameState == Logic.GameState.PLAYING) && ((movableIn == (MoveMode)_logic.gameMode) || (movableIn == MoveMode.BOTH));
     }
 }
