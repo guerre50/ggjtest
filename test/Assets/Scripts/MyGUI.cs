@@ -11,6 +11,7 @@ public class MyGUI : MonoBehaviour {
 	public GameObject circleTime;
 	private Logic.GameState _state;
 	Vector3 original;
+	public GameObject Menubackground;
 
 	// Use this for initialization
 	void Start () {
