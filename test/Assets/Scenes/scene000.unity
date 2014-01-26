@@ -1681,7 +1681,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 5400000, guid: bf8aefc450c298f42bb2cbdbaf71d510, type: 2}
       propertyPath: m_Mass
-      value: 1
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 5400000, guid: bf8aefc450c298f42bb2cbdbaf71d510, type: 2}
       propertyPath: m_Drag
@@ -7160,7 +7160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1068716890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7654,6 +7654,10 @@ Prefab:
     - target: {fileID: 400000, guid: 5c3a0e0160489894c81fd95244af85fd, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5c3a0e0160489894c81fd95244af85fd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c3a0e0160489894c81fd95244af85fd, type: 2}
@@ -13393,7 +13397,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 342822754}
   m_GameObject: {fileID: 2035775370}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .5
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
