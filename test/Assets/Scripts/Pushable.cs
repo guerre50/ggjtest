@@ -32,6 +32,13 @@ public class Pushable : MonoBehaviour {
             rigidbody.isKinematic = true;
         }
 
+
+		if (_logic.gameMode == Logic.GameMode.SIDESCROLL) {
+			if (rigidbody.drag != 0)	rigidbody.drag = 0;
+		} else {
+			if (rigidbody.drag != 10) rigidbody.drag = 10;
+		}
+
         if (movableIn == MoveMode.SIDESCROLL)
         {
             if (_logic.gameMode == Logic.GameMode.SIDESCROLL)
