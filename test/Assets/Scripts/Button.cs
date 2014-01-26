@@ -6,14 +6,17 @@ public class Button : MonoBehaviour {
     public Logic.GameMode buttonVisibleIn;
 	public GameObject[] doors;
     public GameObject keyBox;
+	public GameObject coloredRenderer;
 
 	private bool buttonActive = false;
 	private bool wasActive = false;
 
 	private Logic _logic;
+	private SoundManager _sound;
 
 	void Start() {
 		_logic = Logic.instance;
+		_sound = SoundManager.instance;
         //graphics.renderer.material.color = keyBox.GetComponentInChildren<Renderer>().material.color;
 	}
 
@@ -22,15 +25,18 @@ public class Button : MonoBehaviour {
 
         foreach (Renderer rend in renderers)
         {
-            rend.enabled = IsVisible();
+			rend.enabled = IsVisible();// || buttonActive;
         }
 
-        Renderer border = GetComponentInChildren<Renderer>();
+		Renderer border = coloredRenderer.GetComponent<Renderer>();
         border.material.color = keyBox.GetComponent<Pushable>().currentColor;
 
         if (buttonActive)
         {
-            if (!wasActive) NotifyDoors(true);
+            if (!wasActive) {
+				NotifyDoors(true);
+				_sound.Play ("denied", transform.position);
+			}
         }
         else
         {
