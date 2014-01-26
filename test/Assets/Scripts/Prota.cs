@@ -37,7 +37,7 @@ public class Prota : MonoBehaviour {
 		rigidbody.maxAngularVelocity = speed;
 	}
 
-	void Update () {
+	void Update () { 
 		UpdateMovement();
 		Actions();
 	}

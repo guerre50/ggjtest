@@ -2,19 +2,15 @@
 using System.Collections;
 
 public class CameraLimits : MonoBehaviour {
-
+	public Vector2 limitX;
+	public Vector2 limitZ;
 
 	// Use this for initialization
 	void Start () {
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	void OnDrawGizmos() {
-		Gizmos.DrawCube(
+		//Gizmos.DrawCube(bounds.center, bounds.
 	}
 }
