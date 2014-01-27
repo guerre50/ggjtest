@@ -22,6 +22,9 @@ public class Lletres : MonoBehaviour {
 				iTween.PunchPosition (gameObject, new Vector3 (Random.Range (-4.0f, 4.0f), 0, Random.Range (-4.0f, 4.0f)), 2.0f);
 			}
 		}
+		if (Input.anyKeyDown) {
+			OnMouseDown();
+		}
 	}
 
 	void OnMouseDown() {
